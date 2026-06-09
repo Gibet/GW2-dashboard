@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Skill from '../Generic/skill';
 import Traitline from '../Generic/Traits/Traitline';
+import GW2 from '../../service/api';
 
 
 // this component is used to display the build of a character
@@ -25,8 +26,7 @@ const Build = ({skills, traits}) => {
         var info = []
 
         // query returning the skills of a character based on the ids provided
-        var response = await fetch(`https://api.guildwars2.com/v2/skills?ids=${ids.join(",")}`)
-        var data = await response.json()
+        const data = await GW2.fetch(`skills?ids=${ids.join(",")}`)
         
         // for each skill in the build we add it to the info list with the type of skill as key
         for(var i = 0; i < ids.length; i++){
@@ -46,8 +46,7 @@ const Build = ({skills, traits}) => {
         var ids = [traits.pve[0].id,traits.pve[1].id,traits.pve[2].id]
 
         // query returning the traits of a character based on the ids provided
-        var response = await fetch(`https://api.guildwars2.com/v2/specializations?ids=${ids.join(",")}`)
-        var info = await response.json()
+        const info = await GW2.fetch(`specializations?ids=${ids.join(",")}`)
         
         setTraitsInfo(info)
 

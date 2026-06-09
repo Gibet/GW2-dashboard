@@ -1,6 +1,23 @@
 //  primary attributes have a base value that grows with character level, rising every level until character level 10 and every even level thereafter. The base value starts at 37 for a level 1 character and increases to a total of 1000 at level 80.
 
 // increase pattern of a primary attribute based on the character level
+
+
+export const primaryAttributes = {
+    Power: "Power",
+    Precision: "Precision",
+    Toughness: "Toughness",
+    Vitality: "Vitality",
+    CritDamage: "Ferocity",
+    HealingPower: "Healing Power",
+    Healing: "Healing Power",
+    ConditionDamage: "Condition Damage",
+    ConditionDuration: "Expertise",
+    Concentration: "Concentration",
+    BoonDuration: "Concentration",
+}
+
+// Stats increase per level for each range for stats calculation
 const increasePatterns = [
     { maxLevel: 10, increase: 7 },
     { maxLevel: 20, increase: 10 },

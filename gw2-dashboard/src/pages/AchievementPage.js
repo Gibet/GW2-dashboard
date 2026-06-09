@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Achievement from '../components/Achievements/Achievement';
+import GW2 from '../service/api';
+
 
 
 const AchievementsPage = () => {
@@ -20,41 +22,31 @@ const AchievementsPage = () => {
 
     // load all the groups of achievements
     const loadAllGroups = async() => {
-        let groupsFetch = await fetch("https://api.guildwars2.com/v2/achievements/groups")
-        let ids = await groupsFetch.json()
-
-        let response = await fetch(`https://api.guildwars2.com/v2/achievements/groups?ids=${ids.join(',')}`)
-        let results = await response.json()
+        const ids = await GW2.fetch(`achievements/groups`)  
+        const results = await GW2.fetch(`achievements/groups?ids=${ids.join(',')}`)
 
         setGroups(results)
     }
-
     const loadAccountAchievements = async() => {
 
         if(!localStorage.getItem('api_key')){return}
         
-        let accountResponse = await fetch(`https://api.guildwars2.com/v2/account/achievements?access_token=${localStorage.getItem('api_key')}`)
-        let accountResults = await accountResponse.json()
+        const accountResults = await GW2.account(`account/achievements`)
 
         setAccountAchievements(accountResults)
     }
-
     const loadGroup = async (index, ids) => {
 
         const tempGroups = [...groups]
-
-        let response = await fetch(`https://api.guildwars2.com/v2/achievements/categories?ids=${ids.join(',')}`)
-        let results = await response.json()
+        let results = await GW2.fetch(`achievements/categories?ids=${ids.join(',')}`)
 
         tempGroups[index].details = results
         setGroups(tempGroups)
     }
-
     const loadCategory = async (name, ids) => {
 
         if (ids.length != 0) {
-            let response = await fetch(`https://api.guildwars2.com/v2/achievements?ids=${ids.join(',')}`)
-            let results = await response.json()
+            let results = await GW2.fetch(`achievements?ids=${ids.join(',')}`)
 
             setAchievements(results)
         }
@@ -80,11 +72,11 @@ const AchievementsPage = () => {
             </Accordion>   
         </div>}
         <div id='achievements-list'>
-                {achievements && achievements.map((achievement, index) => {
+                {achievements?.map((achievement, index) => {
                     return <Achievement
                         key={index}
                         achievement={achievement}
-                        status={accountAchievements && accountAchievements.find(accountAchievement => accountAchievement.id === achievement.id)}
+                        status={ accountAchievements?.find(accountAchievement => accountAchievement.id === achievement.id)}
                     />
                 })}
         </div>

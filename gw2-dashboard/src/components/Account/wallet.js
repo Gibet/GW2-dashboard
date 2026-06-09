@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import GW2 from '../../service/api';
 
 
 // this component is used to display the wallet of the account
@@ -19,8 +20,7 @@ const Wallet = ({content}) => {
         })
 
         // query returning the currencies details based on the ids provided
-        var response = await fetch(`https://api.guildwars2.com/v2/currencies?ids=${ids.join(",")}`)
-        var data = await response.json()
+        const data = await GW2.fetch(`currencies?ids=${ids.join(",")}`)
 
         setCurrencies(data)
     }

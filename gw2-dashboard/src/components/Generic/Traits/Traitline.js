@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Trait from './Trait';
+import GW2 from '../../../service/api';
 
 //this component is used to display a traitline with its traits and background image
 const  Traitline = ({line}) => {
@@ -15,17 +16,13 @@ const  Traitline = ({line}) => {
 
     // query returning the major traits of a traitline based on the ids provided
     const loadMajor = async() => {
-        var response = await fetch(`https://api.guildwars2.com/v2/traits?ids=${line.major_traits.join(",")}`)
-        var info = await response.json()
-        
+        const info = await GW2.fetch(`traits?ids=${line.major_traits.join(",")}`)
         setMajor(info)
     }
 
     // query returning the minor traits of a traitline based on the ids provided
     const loadMinor = async() => {
-        var response = await fetch(`https://api.guildwars2.com/v2/traits?ids=${line.minor_traits.join(",")}`)
-        var info = await response.json()
-        
+        const info = await GW2.fetch(`traits?ids=${line.minor_traits.join(",")}`)
         setMinor(info) 
     }
 

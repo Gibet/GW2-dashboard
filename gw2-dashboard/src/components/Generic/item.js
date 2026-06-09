@@ -22,7 +22,7 @@ const Item = ({item, details}) => {
                         { focused && <ItemTooltip 
                                 item={item}
                                 details={details}
-                            />}
+                        />}
                         {details && <>
                             {details.count > 1 && <span className='count'>{details.count}</span>}
                         </>}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Item from '../Generic/item';
+import GW2 from '../../service/api';
 
 
 // this component is used to display the inventory of a character 
@@ -16,31 +17,28 @@ const Inventory = ({bags}) => {
 
         setInventoryContent(null)
         
-        var ids = []
-        var info = []
+        let itemsIds = []
+        let bagsContent = []
         
         // for each bag in the inventory of the character
         for(let i = 0; i < bags.length; i++){
-            ids[i] = []
-            info[i] = []
-            var a = 0
-            var duplicate = false
+            itemsIds[i] = []
+            bagsContent[i] = []
+            let bagIndex = 0
 
             // get the ids of the items in the bag
-            for(let y = 0; y < bags[i].inventory.length; y++){
-                if(bags[i].inventory[y]){
-                    ids[i].push(bags[i].inventory[y].id)
-                }    
-            }
+            bags[i].inventory.forEach(item => {
+                    item && itemsIds[i].push(item.id)   
+            })
             
             // if the bag is not empty
-            if(ids[i].length !== 0){
-                // query returning the items of a character based on the ids provided
-                var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
-                var data = await response.json()
+            if(itemsIds[i].length !== 0){
+                const data = await GW2.fetch(`items?ids=${itemsIds[i].join(",")}`)
                 
                 // for each item in the bag 
                 for (let x = 0 ; x < bags[i].inventory.length; x++){
+                    let duplicate = false
+                    
                     if(bags[i].inventory[x]){
                         // check if the item is a duplicate of an item already in the bag
                         for (let b = 0 ; b < x; b++){
@@ -48,44 +46,51 @@ const Inventory = ({bags}) => {
                             duplicate = false
                             if(bags[i].inventory[b]){
                                 // if the item is a duplicate we replace it with the item already in the bag
-                                if(info[i][b].id === bags[i].inventory[x].id){
+                                if(bagsContent[i][b].id === bags[i].inventory[x].id){
 
                                     duplicate = true
-                                    info[i][x] = info[i][b]
+                                    bagsContent[i][x] = bagsContent[i][b]
                                     break
                                 }
                             }
                         }
                         // if the item is not a duplicate we add it to the bag
                         if(!duplicate){
-                            info[i][x] = data[a]
-                            a++
-                        }  
+                            bagsContent[i][x] = data[bagIndex]
+                            bagIndex++
+                        }
                     }
                     // if the item is null we add null to the bag
                     else{
-                    info[i][x] = bags[i].inventory[x]
+                    bagsContent[i][x] = bags[i].inventory[x]
                     }
                 }
             }
             // if the bag is empty we add null to the bag
             else{
-                info[i] = bags[i].inventory
+                bagsContent[i] = bags[i].inventory
             }
         }
-        setInventoryContent(info)
+        setInventoryContent(bagsContent)
     }
 
     return  <div id='inventory'>
                 <h3>Inventory</h3>
                 {inventoryContent && <>
                     {inventoryContent.map((bag, index) => {
-                        var x = 0
-                        return <div className='bag'>
-                            {bag.map(item => {
-                                var info = bags[index].inventory[x]
+                        let x = 0
+                        return <div
+                            key={index}
+                            className='bag'
+                        >
+                            {bag.map((item, key) => {
+                                let info = bags[index].inventory[x]
                                 x++
-                                return <Item item = {item} details = {info}/>
+                                return <Item
+                                    key = {item ? item.id : key}
+                                    item = {item}
+                                    details = {info}
+                                />
                                 })}
                         </div>
                         })

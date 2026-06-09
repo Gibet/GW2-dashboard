@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import CharacterMenu from '../components/characterMenu';
 import CharacterSheet from '../components/characterSheet';
 import Inventory from '../components/Character/inventory';
 import Wallet from '../components/Account/wallet';
+import GW2 from '../service/api';
+import CharacterContext from '../context/character';
 
 
 const AccountPage = () => {
@@ -13,6 +15,7 @@ const AccountPage = () => {
     const [ bank, setBank ] = useState([])
     const [ wallet, setWallet ] = useState()
     const [ viewState, setViewState ] = useState(0)
+    const charContext = useContext(CharacterContext)
 
     useEffect(()=>{
 
@@ -24,43 +27,39 @@ const AccountPage = () => {
         }
     }, [])
 
+    const chararcterData = useMemo(()=>{
+        return character
+    },[character])
+
+
+
 
     const loadAllCharacters = async () => {
         // query returning the list of characters of the account based on the api key provided
-        var response = await fetch(`https://api.guildwars2.com/v2/characters?access_token=${key}`)
-        var result = await response.json()
-
+        const result = await GW2.account(`characters`)
         setAllCharacters(result)
     }
-
     const loadCharacter = async (name) => {
         setCharacter(null)
 
         // query returning the detail of a character based on the name provided
-        var response = await fetch(`https://api.guildwars2.com/v2/characters/${name}?access_token=${key}`)
-        var result = await response.json()
-        
+        const result = await GW2.account(`characters/${name}`)
         setViewState(1)    
         setCharacter(result)
-    }
 
+    }
     const loadWallet = async () => {
         // query returning the wallet of the account based on the api key provided
-        var response = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${key}`)
-        var result = await response.json()
-
+        const result = await GW2.account(`account/wallet`)
         setWallet(result)
     }
-
     const loadBank = async () => {
         // query returning the bank of the account based on the api key provided
-        var response = await fetch(`https://api.guildwars2.com/v2/account/bank?access_token=${key}`)
-        var result = await response.json()
-
+        const result = await GW2.account(`account/bank`)
         setBank(...bank, {inventory: result})
     }
 
-    return <>
+    return (
         <div className='page-container'>
             {key &&
                 <>
@@ -73,14 +72,20 @@ const AccountPage = () => {
                         }
                         <li onClick={() => setViewState(2)}>Bank</li>
                         <li onClick={() => setViewState(3)}>Wallet</li>
+                        {/* Search bar */}
+                        <div className="search-bar">
+                            <input type="text" placeholder="Search..." />
+                        </div>
                     </div>
-                    {(viewState === 1 && character) && <CharacterSheet character={character} />}
+                    {(viewState === 1 && character) && <CharacterContext.Provider value={chararcterData}>
+                        <CharacterSheet character={character} />
+                    </CharacterContext.Provider>}
                     {(viewState === 2 && bank) && <Inventory bags={[bank]} />}
                     {(viewState === 3 && wallet) && <Wallet content={wallet} />}
                 </>
             }
         </div>
-    </>
+    )
 }
 
 export default AccountPage

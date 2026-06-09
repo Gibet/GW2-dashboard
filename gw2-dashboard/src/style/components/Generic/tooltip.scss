@@ -24,8 +24,31 @@
 
 .tooltip_stats {
     display: flex;
+    flex-direction: column;
     div{
         flex: 1;
+    }
+}
+
+.tooltip_stats_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: lightgrey;
+}
+
+.tooltip_stats_header, .item_stats {
+    margin-bottom: 15px;
+}
+
+.item_stats {
+    display: flex;
+    flex-direction: column;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 }
 

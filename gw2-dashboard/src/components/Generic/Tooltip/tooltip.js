@@ -1,4 +1,5 @@
 import React from 'react';
+import { primaryAttributes } from '../../../helpers/variables';
 
 // this component is used to display the tooltip of an item 
 const ItemTooltip = ({item, details}) => {
@@ -18,10 +19,17 @@ const ItemTooltip = ({item, details}) => {
 
                 {item.details && 
                     <div className='tooltip_stats'>
-                        <div>level: {item.level}</div>
-                        <div>
-                            {!item.details.defense ? (<></>):(<div>{item.details.defense} armor</div>)}
-                            {item.details.min_power && (<div>{item.details.min_power}-{item.details.max_power} damage</div>)}
+                        <div className='tooltip_stats_header'>
+                            <div>Level: {item.level}</div>
+                            <div>
+                                {!item.details.defense ? (<></>):(<div>{item.details.defense} armor</div>)}
+                                {item.details.min_power && (<div>{item.details.min_power}-{item.details.max_power} damage</div>)}
+                            </div>
+                        </div>
+                        <div className='item_stats'>
+                            {item.details.infix_upgrade?.attributes.map((attribute, index) => {
+                                return <div key={index}>{primaryAttributes[attribute.attribute]}: {attribute.modifier}</div>
+                            })}
                         </div>
                     </div>
                 }

@@ -4,11 +4,13 @@ import Gear from './Character/equipement';
 import Build from './Character/build';
 import Inventory from './Character/inventory';
 import Backstory from './backstory';
-
+import CharacterContext from '../context/character';
+import { useContext } from 'react';
 
 // This component is used to display the character sheet of a character
-const CharacterSheet = ({character}) => {
+const CharacterSheet = ({}) => {
 
+    const character = useContext(CharacterContext)
     const [ viewState, setViewState ] = useState(0)
 
     return <div id='character_sheet' className={`${character.race} ${character.profession}`} >

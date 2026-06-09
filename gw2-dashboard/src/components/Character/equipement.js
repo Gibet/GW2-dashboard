@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Item from '../Generic/item';
-import { parseAttribute } from '../../helpers/utils';
+import { parseAttribute, parseInfusions } from '../../helpers/utils';
+import GW2 from '../../service/api';
+import { primaryAttributes } from '../../helpers/variables';
 
 
 // this component is used to display the equipment of a character
@@ -13,12 +15,16 @@ const Gear = ({equipment, level}) => {
         !gearInfo && load_gear_info()
     }, [gearInfo, attributes])
 
+    useEffect(()=>{
+        parseInfusions(equipment, attributes)
+    }, [])
+
     const load_gear_info = async () => {
 
         setGearInfo(null)
         
-        var ids = []
-        var info = []
+        let ids = []
+        let info = {}
 
         // put the ids in a list
         equipment.forEach(gear => {
@@ -26,15 +32,27 @@ const Gear = ({equipment, level}) => {
         });
         
         // query returning the items of a character based on the ids provided
-        var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids.join(",")}`)
-        var data = await response.json()
-
+        let data = await GW2.fetch(`items?ids=${ids.join(",")}`)
         // for each item in the equipment we add it to the info list with the slot of the item as key
-        for(var i = 0; i < ids.length; i++){
+        for(let i = 0; i < ids.length; i++){
+            
+            if(equipment[i].stats){
+                let stats = []
+                // convert equipment[i].stats.attributes to an array
+                for(let key in equipment[i].stats.attributes){
+                    stats.push({attribute: key, modifier: equipment[i].stats.attributes[key]})
+                }
+                // add the stats to the item
+                data[i].details = {
+                    ...data[i].details,
+                    infix_upgrade: {
+                        attributes: stats
+                    }
+                }
 
+            }
             info[equipment[i].slot] = data[i]
         }
-
         setGearInfo(info)
 
         // set the attributes of the character based on the equipment
@@ -72,15 +90,11 @@ const Gear = ({equipment, level}) => {
                     <div id="secondary_gear">
                         {attributes && <div id="stat_view">
                             <h3>Stats</h3>
-                            <li>Power: {attributes.Power}</li>
-                            <li>Toughness: {attributes.Toughness}</li>
-                            <li>Vitality: {attributes.Vitality}</li>
-                            <li>Precision: {attributes.Precision}</li>
-                            <li>Ferocity: {attributes.CritDamage}</li>
-                            <li>Condition Damage: {attributes.ConditionDamage}</li>
-                            <li>Expertise: {attributes.ConditionDuration}</li>
-                            <li>Concentration: {attributes.Concentration}</li>
-                            <li>Healing Power: {attributes.HealingPower}</li>
+                            {Object.keys(attributes).map((attribute, index) => {
+                                return <div key={index}>
+                                    {primaryAttributes[attribute]}: {attributes[attribute]}
+                                </div>
+                            })}
                         </div>}
                         <div id="trinkets">
                             Trinkets

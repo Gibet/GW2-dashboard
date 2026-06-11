@@ -5,7 +5,7 @@ import { SecToHours } from "../utils/functions";
 
 const AccountView: React.FC<AccountProps> = (props: AccountProps) => {
   return (
-    <div >
+    <div className="flex flex-col">
       <span>Account name: {props.name}</span>
       <span>Account age:{SecToHours(props.age)}</span>
       <span>{props.world}</span>

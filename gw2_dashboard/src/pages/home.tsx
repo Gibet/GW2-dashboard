@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "../contexts/accountContext";
+import { getAccount } from "../utils/services/account";
+import AccountView from "../components/accountView";
+import type { AccountProps } from "../utils/types";
 
 const Home = () => {
   const account = useAccount();
   const [input, setInput] = useState(account?.token || "");
+  const [currentAccount, setCurrentAccount] = useState<AccountProps>()
 
   const handleSubmit = () => {
     account?.setToken(input);
@@ -16,6 +20,12 @@ const Home = () => {
 
   useEffect(() => {
     if (!account?.token) setInput('')
+    if (account?.token) {
+      getAccount()
+        .then((data) => {
+          setCurrentAccount(data)
+        })
+    }
   }, [account?.token])
 
   return (
@@ -39,6 +49,7 @@ const Home = () => {
         </div>
       </form>
       <button onClick={resetToken}>Reset</button>
+      {currentAccount && <AccountView {...currentAccount} />}
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { AccountProvider } from './contexts/accountContext'
 import './App.css'
 import Header from './components/header'
 import Footer from './components/footer'
+import Account from './pages/account'
+import Achievments from './pages/achievments'
 
 function App() {
   return (
@@ -12,8 +14,8 @@ function App() {
         <Header />  
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/account' element={<Home />} />
-          <Route path='/achievments' element={<Home />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/achievments' element={<Achievments />} />
         </Routes>
         <Footer />    
       </BrowserRouter>

@@ -39,12 +39,6 @@ const Home = () => {
         </div>
       </form>
       <button onClick={resetToken}>Reset</button>
-
-      {account?.permissions && account.permissions.map((permission: string) => {
-        return (
-          <div>{permission}</div>
-        )
-      })}
     </div>
   );
 };

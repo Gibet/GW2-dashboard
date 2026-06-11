@@ -1,3 +1,5 @@
+export const STORAGE_KEY = "GW2API";
+
 export const primaryAttributes = {
     Power: "Power",
     Precision: "Precision",

@@ -5,35 +5,63 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { STORAGE_KEY } from "../utils/types";
+import API from "../utils/api";
 
-const STORAGE_KEY = "GW2API";
 type AccountContextValue = {
-  key?: string;
-  setKey: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+  token?: string;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+  permissions?: string[];
+};
 
 const getStoredApiKey = () => {
   try {
-    const savedKey = localStorage.getItem(STORAGE_KEY);
-    if (savedKey) return savedKey;
+    const savedToken = localStorage.getItem(STORAGE_KEY);
+    if (savedToken) return savedToken;
   } catch {}
 };
 
-const AccountContext = createContext<AccountContextValue | undefined>(undefined);
+const validateToken = async (token: string) => {
+  try {
+    const query = await API.get("tokeninfo", {
+      params: { access_token: token },
+    });
+    return query.data;
+  } catch {
+    return null;
+  }
+};
+
+const AccountContext = createContext<AccountContextValue | undefined>(
+  undefined,
+);
 
 export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [key, setKey] = useState<string | undefined>(getStoredApiKey);
+  const [token, setToken] = useState<string | undefined>(getStoredApiKey);
+  const [permissions, setPermissions] = useState<string[]>([]);
 
   useEffect(() => {
     try {
-      if (key) { localStorage.setItem(STORAGE_KEY, key); }
-      else {  localStorage.removeItem(STORAGE_KEY) }
+      if (!token) {
+        localStorage.removeItem(STORAGE_KEY);
+        setPermissions([]);
+        return;
+      }
+      validateToken(token).then((response) => {
+        if (!response) return;
+        localStorage.setItem(STORAGE_KEY, token);
+        Array.isArray(response.permissions) &&
+          setPermissions(response.permissions);
+      });
     } catch {}
-  }, [key]);
+  }, [token]);
 
-  const value = useMemo(() => ({ key, setKey }), [key, setKey]);
+  const value = useMemo(
+    () => ({ token, setToken, permissions }),
+    [token, setToken, permissions],
+  );
 
   return (
     <AccountContext.Provider value={value}>{children}</AccountContext.Provider>

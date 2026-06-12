@@ -8,10 +8,16 @@ const Header :React.FC = () => {
 
   return (
     <header>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/account'}>Account</Link>
-      <Link to={'/characters'}>Characters</Link>
-      <Link to={'/achievments'}>Achievments</Link>
+      <nav className='flex justify-between px-4'>
+        <button onClick={theme.toggleTheme}>
+          {theme.theme}
+        </button>
+        <div className='flex gap-2'>
+          <Link to={'/'}>Home</Link>
+          <Link to={'/account'}>Account</Link>
+          <Link to={'/achievments'}>Achievments</Link>
+        </div>
+      </nav>
     </header>
   )
 }

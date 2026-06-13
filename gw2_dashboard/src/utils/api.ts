@@ -1,5 +1,5 @@
+import { STORAGE_KEY } from './variables';
 import axios from "axios";
-import { STORAGE_KEY } from "./types";
 
 const API = axios.create({
   baseURL: "https://api.guildwars2.com/v2/",

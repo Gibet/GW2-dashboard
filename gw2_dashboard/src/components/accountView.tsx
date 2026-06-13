@@ -1,9 +1,9 @@
 import type React from "react";
-import type { AccountProps } from "../utils/types";
+import type { AccountType } from "../utils/types/account";
 import { SecToHours } from "../utils/functions";
 
 
-const AccountView: React.FC<AccountProps> = (props: AccountProps) => {
+const AccountView: React.FC<AccountType> = (props: AccountType) => {
   return (
     <div className="flex flex-wrap text-left justify-between mb-3">
       <div className="flex flex-col">

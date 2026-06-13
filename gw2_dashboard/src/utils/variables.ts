@@ -1,20 +1,5 @@
 export const STORAGE_KEY = "GW2API";
 
-export interface AccountProps {
-  name: string;
-  age: number;
-  world: number;
-  guilds: string[];
-  guild_leader: string[];
-  created: string;
-  access: string[];
-  commander: boolean;
-  fractal_level: number;
-  daily_ap: number;
-  monthly_ap: number;
-  wvw_rank: number;
-}
-
 export const primaryAttributes = {
     Power: "Power",
     Precision: "Precision",

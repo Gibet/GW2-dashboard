@@ -5,15 +5,16 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { STORAGE_KEY, type AccountProps } from "../utils/types";
+import { STORAGE_KEY } from "../utils/variables";
+import { type AccountType } from "../utils/types/account";
 import API from "../utils/api";
 
 type AccountContextValue = {
   token?: string;
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
   permissions?: string[];
-  data?: AccountProps;
-  setData: React.Dispatch<React.SetStateAction<AccountProps | undefined>>;
+  data?: AccountType;
+  setData: React.Dispatch<React.SetStateAction<AccountType | undefined>>;
 };
 
 const getStoredApiKey = () => {
@@ -43,7 +44,7 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [token, setToken] = useState<string | undefined>(getStoredApiKey);
   const [permissions, setPermissions] = useState<string[]>([]);
-  const [data, setData] = useState<AccountProps>()
+  const [data, setData] = useState<AccountType>()
 
   useEffect(() => {
     try {

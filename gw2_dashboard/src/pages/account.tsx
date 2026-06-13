@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAccount } from '../contexts/accountContext'
 import AccountView from '../components/accountView'
 import Characters from '../components/charactersView'
+import { CharacterProvider } from '../contexts/characterContext'
 
 const tabs = ['Characters', 'Bank', 'Wallet', 'Guilds']
 
@@ -25,7 +26,7 @@ const Account = () => {
         </div>
         <hr />
         <div>
-          { (content === 'Characters') &&  <Characters />}
+          { (content === 'Characters') &&  <CharacterProvider><Characters /></CharacterProvider>}
           { (content === 'Bank') &&  <></>}
           { (content === 'Wallet') &&  <></>}
           { (content === 'Guilds') &&  <></>}

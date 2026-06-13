@@ -1,3 +1,5 @@
+import type { BagType } from "./items";
+
 export interface CharacterType {
   name: string;
   race: string;
@@ -97,17 +99,4 @@ export interface SkillBarType {
   heal: number;
   utilities: number[];
   elite: number;
-}
-
-export interface BagType {
-  id: number;
-  size: number;
-  inventory: (InventoryItemType | null)[];
-}
-
-export interface InventoryItemType {
-  id: number;
-  count: number;
-  binding?: string;
-  bound_to?: string;
 }

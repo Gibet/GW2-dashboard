@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+.traitline {
+  background-position: bottom left;
+
+    align-items: center;
+    border: 2px solid #303030;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    height: 140px;
+    width: 650px;
+    margin: 1% 0;
+}
+
+.line_icon {filter: drop-shadow(0px 6px 3px rgb(50, 50, 0));}
+.line_icon span{clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #00000023;}
+
+.trait_tier {
+    display:flex;
+    flex-direction: column;
+}
+
+.trait{
+    margin: 1%;
+    height: 40px;
+    width: 40px;
+}
+
+.traitline_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: .5 0 auto;
+    height: 100%;
+    width: 12%;
+}
+
+/* */
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

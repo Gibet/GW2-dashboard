@@ -25,8 +25,8 @@ const Characters = () => {
   }, [name])
 
   return (
-    <div className="grid grid-cols-6 py-4">
-      <div className="col-span-1 flex flex-col gap-1 border-r">
+    <div className="grid grid-cols-6">
+      <div className="col-span-1 flex flex-col gap-1 border-r py-4">
         {isPending && <div>Loading</div>}
         {isError && <div className="text-red-500">Error: {error?.message}</div>}
         {characters?.map((character) => (

@@ -17,7 +17,7 @@ const Bank = () => {
   })
 
   return (
-    <div className="flex flex-col gap 3">
+    <div className="flex flex-col py-3">
       <div className="">
         {isLoading && <div>Loading...</div>}
         {isError && <div className="text-red-500">Error: {error?.message}</div>}

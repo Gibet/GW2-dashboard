@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
-import type { CharacterSpecializationsType, SkillBarType, CharacterSkillsType } from "../utils/types/character";
+import type { CharacterSpecializationsType, CharacterSkillsType } from "../utils/types/character";
 import { getSkills, getSpecializations, getTraits } from "../utils/services/build";
 import SkillBar from "./skillBar";
 import TraitLine from "./traitLine";
@@ -24,12 +24,12 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
   , [skills, tab])
 
   const { data: specs, isLoading: loadingSpecs, isError: isErrorSpecs, error: errorSpecs } = useQuery({
-    queryKey: ['specializations', tab],
+    queryKey: ['specializations', tab, specsIds.join(',')],
     queryFn: () => getSpecializations(specsIds)
   })
 
   const { data: skillsData, isLoading: loadingSkills, isError: isErrorSkills, error: errorSkills } = useQuery({
-    queryKey: ['skiils', tab],
+    queryKey: ['skiils', tab, skillsIds.join(',')],
     queryFn: () => getSkills(skillsIds),
     enabled: skillsIds.length > 0
   })
@@ -40,14 +40,20 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
   , [specs])
 
   const { data: traits, isLoading: loadingTraits, isError: isErrorTraits, error: errorTraits } = useQuery({
-    queryKey: ['traits', tab],
+    queryKey: ['traits', tab, traitsIds.join(',')],
     queryFn: () => getTraits(traitsIds),
     enabled: traitsIds.length > 0
   })
 
-  useEffect(() => {
-    
-  }, [tab])
+  const sortedTraits = useMemo(() => {
+    if (!specs || !traits) return [];
+    const traitMap = new Map(traits.map(trait => [trait.id, trait]));
+
+    return specs.map(spec => ({
+      minorTraits: spec.minor_traits.map(id => traitMap.get(id)).filter(Boolean),
+      majorTraits: spec.major_traits.map(id => traitMap.get(id)).filter(Boolean),
+    }));
+  }, [traits, specs])
   
   return (
     <div className="flex flex-col items-start p-4 gap-4">
@@ -57,7 +63,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
         <button onClick={() => setTab('wvw')}>WVW</button>
       </div>
       <div className="w-full">
-        {loadingSkills && <div>Loading...</div>}
+        {loadingSkills && <div>Loading Skills...</div>}
         {isErrorSkills && <div className="text-red-500">Error: {errorSkills?.message}</div>}
         {skillsData && ( <div className="flex flex-col justify-start items-center text-left">
             <span>Skills</span>
@@ -66,15 +72,15 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
         )}
       </div>
       <div className="w-full">
-        {(loadingSpecs && loadingTraits) && <div>Loading...</div>}
+        {(loadingSpecs && loadingTraits) && <div>Loading Specializations...</div>}
         {(isErrorSpecs && isErrorTraits) && <div className="text-red-500">
           <span>Error Specializations: {errorSpecs?.message}</span>
           <span>Error Traits: {errorTraits?.message}</span>
         </div>}
         {(specs && traits) && ( <div className="flex flex-col w-full items-center text-left">
             <span>Specializations</span>
-            {specs.map((spec) => (
-              <TraitLine specialization={spec} />
+            {specs.map((spec, index) => (
+              <TraitLine key={spec.name} specialization={spec} traits={sortedTraits[index]} />
             ))}
           </div>
           )}

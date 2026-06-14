@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAccountCharacters } from "../utils/services/characters";
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import CharacterTab from "./characterTab";
-import { useCharacter } from "../contexts/characterContext";
 
 const Characters = () => {
-  const character = useCharacter()
-  const queryClient = useQueryClient()
   const [characters, setCharacters] = useState<string[]>([]);
   const [name, setName] = useState<string>()
 
@@ -18,11 +15,6 @@ const Characters = () => {
   useEffect(() => {
     data && setCharacters(data)
   }, [data]);
-
-  useEffect(() => {
-    character?.setData(undefined)
-    queryClient.invalidateQueries({queryKey: ['character', name]})
-  }, [name])
 
   return (
     <div className="grid grid-cols-6">

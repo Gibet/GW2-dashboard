@@ -1,5 +1,5 @@
 import { useCharacter } from "../contexts/characterContext"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getCharacter } from "../utils/services/characters"
 import { useEffect, useState } from "react"
 import { SecToHours } from "../utils/functions"
@@ -13,10 +13,11 @@ type CharacterTabProps = {
 
 const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
 
+  const queryClient = useQueryClient()
   const character = useCharacter()
   const [tab, setTab] = useState<string>(('main'))
 
-  const {data, isPending, isError, error} = useQuery({
+  const {data, isLoading, isError, error} = useQuery({
     queryKey: ['character', name],
     queryFn: () => getCharacter(name),
     enabled: !!name
@@ -38,9 +39,9 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
         ))}
       </div>
       <hr />
-      {isPending && <div>Loading...</div>}
+      {isLoading && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
-      {character?.data  && <div>
+      {(character?.data && !isLoading)  && <div>
         {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left p-4">
           <span>Name: {character.data.name}</span>
           <span>Race: {character?.data?.race}</span>

@@ -4,7 +4,7 @@ import type { ItemType } from "../utils/types/items";
 
 const Item: React.FC<ItemType> = (item: ItemType) => {
   return (
-    <div className="w-12 h-12">
+    <div className="item">
       <img src={item.icon} alt="" />
     </div>
   )

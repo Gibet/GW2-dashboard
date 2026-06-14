@@ -20,8 +20,8 @@ export interface CharacterType {
   recipes: number[];
   training: TrainingType;
   bags: BagType[]
-  specializations: SpecializationsType;
-  skills: SkillsType;
+  specializations: CharacterSpecializationsType;
+  skills: CharacterSkillsType;
 }
 
 export interface CraftingType {
@@ -78,18 +78,18 @@ export interface TrainingType {
   done: boolean;
 }
 
-export interface SpecializationsType {
-  pve: SpecializationType;
-  pvp: SpecializationType;
-  wvw: SpecializationType;
+export interface CharacterSpecializationsType {
+  pve: CharacterSpecializationType[];
+  pvp: CharacterSpecializationType[];
+  wvw: CharacterSpecializationType[];
 }
 
-export interface SpecializationType {
+export interface CharacterSpecializationType {
   id: number;
   traits: number[]
 }
 
-export interface SkillsType {
+export interface CharacterSkillsType {
   pve: SkillBarType;
   pvp: SkillBarType;
   wvw: SkillBarType;

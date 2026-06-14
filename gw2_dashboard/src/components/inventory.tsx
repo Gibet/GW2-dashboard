@@ -33,7 +33,7 @@ const Inventory: React.FC<InventoryProps> = ({ bags }) => {
     )
   }, [bags, data]);
 
-  return <div className="p-4 flex flex-col items-center justify-center">
+  return <div className="inventory flex flex-col items-center justify-center">
     {(isLoading) && <div>Loading inventory...</div>}
     {(isError) && <div className="text-red-500">{error?.message}</div>}
     {inventoryContent?.map((bag, index) => (

@@ -34,8 +34,10 @@
     width: 12%;
 }
 
+.inventory {
+  max-width: 680px;
+}
 .bag {
-    max-width: 700px;
     margin: 1% 0;
     display: flex;
     flex-wrap: wrap;
@@ -43,7 +45,7 @@
 }
 
 .item {
-    margin: .1rem;
+    margin: 2px;
     display: flex;
     flex-direction: row-reverse;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -62,7 +64,7 @@
 }
 
 .icon {
-    margin: .1rem;
+    margin: 2px;
     min-height: 64px;
     min-width: 64px;
     border:2px solid #303030;

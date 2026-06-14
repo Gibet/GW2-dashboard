@@ -17,7 +17,7 @@ const Bank = () => {
   })
 
   return (
-    <div className="flex flex-col py-3">
+    <div className="flex flex-col justify-center items-center py-3">
       <div className="">
         {isLoading && <div>Loading...</div>}
         {isError && <div className="text-red-500">Error: {error?.message}</div>}
@@ -27,7 +27,7 @@ const Bank = () => {
           </div>
         )}
       </div>
-      <div>
+      <div className="flex flex-col items-center justify-center">
         {isLoadingBank && <div>Loading...</div>}
         {isErrorBank && <div className="text-red-500">Error: {errorBank?.message}</div>}
         {bank && ( <div className="flex flex-col justify-start text-left">

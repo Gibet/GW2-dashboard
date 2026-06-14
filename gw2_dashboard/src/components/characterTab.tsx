@@ -41,8 +41,8 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
       <hr />
       {isLoading && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
-      {(character?.data && !isLoading)  && <div>
-        {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left p-4">
+      {(character?.data && !isLoading)  && <div className="flex flex-col justify-center items-center p-4">
+        {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left">
           <span>Name: {character.data.name}</span>
           <span>Race: {character?.data?.race}</span>
           <span>Profession: {character?.data?.profession}</span>

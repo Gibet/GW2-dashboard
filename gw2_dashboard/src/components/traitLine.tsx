@@ -27,13 +27,13 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
 
   return (
     <div key={specialization.id}
-      className="traitline w-full overflow-hidden grid grid-cols-9"
+      className="traitline w-full overflow-hidden grid grid-cols-10"
       style={{
         backgroundImage: `url(${specialization.background})`,
       }}
     >
-      <div className="col-span-3 h-full flex justify-center items-center line_icon">
-        <span className="h-11/12 w-7/12"></span>
+      <div className="col-span-4 h-full flex justify-center items-center line_icon">
+        <span className="h-11/12 w-1/2"></span>
       </div>
         {traits?.minorTraits.map((minor, index) => (<>
           <div key={minor?.id} className="col-span-1 trait_tier">

@@ -33,14 +33,14 @@ const Inventory: React.FC<InventoryProps> = ({ bags }) => {
     )
   }, [bags, data]);
 
-  return <div className="p-4">
+  return <div className="p-4 flex flex-col items-center justify-center">
     {(isLoading) && <div>Loading inventory...</div>}
     {(isError) && <div className="text-red-500">{error?.message}</div>}
     {inventoryContent?.map((bag, index) => (
-      <div key={index} className="flex flex-wrap gap-2 mb-3">
+      <div key={index} className="bag flex flex-wrap mb-3">
         {bag.map((item, key) => (
           <div key={[item?.id, key].join('_')}>
-            { item ? <Item {...item} /> : <div title='Empty' className='w-12 h-12 border'></div>}
+            { item ? <Item {...item} /> : <div title='Empty' className='icon'></div>}
           </div>
         ))}
       </div>

@@ -1,10 +1,90 @@
 @import "tailwindcss";
 
+:root {
+  --Legendary : #a02ef7;
+  --Ascended : #f48;
+  --Exotic : #b46900;
+  --Rare : #b49b1e;
+  --Masterwork : #2dc50e;
+  --Fine : #4f9dfe;
+  --Basic : grey;
+  --Junk : grey;
+
+  /* Skills */
+
+  --Heal : rgb(94, 185, 216);
+  --Utility : white;
+  --Elite : goldenrod;
+}
+
+#gear {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+#gear_view {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#main_gear {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+#secondary_gear {
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+  
+#trinkets {
+    display: flex;
+    flex-direction:column;
+    div {
+        display: flex;
+    }
+}
+  
+#stat_view {
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
+    padding: 1.5%;
+    border: 1px solid black;
+}
+
+
+#character_sheet{
+    flex: 1 1 auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: Medium, serif;
+    #gear, #chara_header{
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #gear {
+        background-position: center;
+    }
+    #chara_header {
+        background-position: center;
+    }
+}
+
 .traitline {
   background-position: bottom left;
 
     align-items: center;
-    border: 2px solid #303030;
+    border:1px solid #303030;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     height: 140px;
     width: 650px;
@@ -35,7 +115,7 @@
 }
 
 .inventory {
-  max-width: 680px;
+  max-width: 612px;
 }
 .bag {
     margin: 1% 0;
@@ -45,14 +125,14 @@
 }
 
 .item {
-    margin: 2px;
+    margin: 1.5px;
     display: flex;
     flex-direction: row-reverse;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     
     img {
-        height: 64px;
-        width: 64px;
+        height: 48px;
+        width: 48px;
     }
     .count {
         position: absolute;
@@ -64,22 +144,22 @@
 }
 
 .icon {
-    margin: 2px;
-    min-height: 64px;
-    min-width: 64px;
-    border:2px solid #303030;
+    margin: 1.5px;
+    height: 48px;
+    width: 48px;
+    border:1px solid #303030;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 
-/* .Legendary {border:2px solid $Legendary;}
-.Ascended {border:2px solid $Ascended;}
-.Exotic {border:2px solid $Exotic;}
-.Rare {border:2px solid $Rare;}
-.Masterwork {border: 2px solid $Masterwork;}
-.Fine {border: 2px solid $Fine;}
-.Basic {border: 2px solid $Basic;}
-.Junk {border: 2px solid $Junk;} */
+.Legendary {border:1px solid var(--Legendary);}
+.Ascended {border:1px solid var(--Ascended);}
+.Exotic {border:1px solid var(--Exotic);}
+.Rare {border:1px solid var(--Rare);}
+.Masterwork {border:1px solid var(--Masterwork);}
+.Fine {border:1px solid var(--Fine);}
+.Basic {border:1px solid var(--Basic);}
+.Junk {border:1px solid var(--Junk);}
 
 
 /* */
@@ -90,7 +170,7 @@
   border-radius: 5px;
   color: var(--accent);
   background: var(--accent-bg);
-  border: 2px solid transparent;
+  border:1px solid transparent;
   transition: border-color 0.3s;
   margin-bottom: 24px;
 

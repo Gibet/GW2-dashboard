@@ -1,4 +1,4 @@
-import type { BagType } from "./items";
+import type { BagType, ItemType } from "./items";
 
 export interface CharacterType {
   name: string;
@@ -100,3 +100,39 @@ export interface SkillBarType {
   utilities: number[];
   elite: number;
 }
+
+export interface GearType {
+  gear: EquipmentType,
+  item: ItemType
+}
+
+export interface GearSetType {
+  HelmAquatic?: GearType 
+  Backpack?: GearType 
+  Coat?: GearType 
+  Boots?: GearType 
+  Gloves?: GearType 
+  Helm?: GearType 
+  Leggings?: GearType 
+  Shoulders?: GearType 
+  Accessory1?: GearType 
+  Accessory2?: GearType 
+  Ring1?: GearType 
+  Ring2?: GearType 
+  Amulet?: GearType 
+  WeaponAquaticA?: GearType 
+  WeaponAquaticB?: GearType 
+  WeaponA1?: GearType 
+  WeaponA2?: GearType 
+  WeaponB1?: GearType 
+  WeaponB2?: GearType 
+  Sickle?: GearType 
+  Axe?: GearType 
+  Pick?: GearType 
+  FishingRod?: GearType 
+  FishingLure?: GearType 
+  PowerCore?: GearType 
+  SensoryArray?: GearType 
+  Relic?: GearType 
+}
+

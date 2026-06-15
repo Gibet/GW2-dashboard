@@ -3,7 +3,7 @@ export interface ItemType {
   description: string,
   type: string,
   level: number,
-  rarity: number,
+  rarity: string,
   vendor_value: number,
   game_types: string[],
   flags: string[],
@@ -29,4 +29,9 @@ export interface InventoryItemType {
   count: number;
   binding?: string;
   bound_to?: string;
+}
+
+export interface InventorySlotType {
+  info: InventoryItemType,
+  item: ItemType
 }

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
-import type { BagType } from "../utils/types/items";
+import type { BagType, InventorySlotType } from "../utils/types/items";
 import { getItems } from "../utils/services/items";
 import Item from "./item";
 
@@ -23,14 +23,17 @@ const Inventory: React.FC<InventoryProps> = ({ bags }) => {
     enabled: itemsIds.length > 0,
   });
 
-  const inventoryContent = useMemo(() => {
-    if (!data) return null;
-
-    const itemsById = new Map(data.map((item) => [item.id, item]))
-  
-    return bags.map((bag) => 
-      bag.inventory.map((slot) => (slot ? itemsById.get(slot.id) ?? null : null))
-    )
+  const inventoryContent = useMemo((): (InventorySlotType | null)[][] => {
+    if (!data || !bags) return []; 
+    
+    return bags.map((bag) =>
+      bag.inventory.map((slot) => {
+        if (!slot) return null;
+        const item = data.find((item) => item.id === slot.id);
+        return item ? { info: slot, item } : null;
+      }),
+    );
+        
   }, [bags, data]);
 
   return <div className="inventory flex flex-col items-center justify-center">
@@ -38,9 +41,9 @@ const Inventory: React.FC<InventoryProps> = ({ bags }) => {
     {(isError) && <div className="text-red-500">{error?.message}</div>}
     {inventoryContent?.map((bag, index) => (
       <div key={index} className="bag flex flex-wrap mb-3">
-        {bag.map((item, key) => (
-          <div key={[item?.id, key].join('_')}>
-            { item ? <Item {...item} /> : <div title='Empty' className='icon'></div>}
+        {bag.map((slot, key) => (
+          <div key={[slot?.item.id, key].join('_')}>
+            { slot ? <Item item={slot.item} slot={slot.info}/> : <div title='Empty' className='icon'></div>}
           </div>
         ))}
       </div>

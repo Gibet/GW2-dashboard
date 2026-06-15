@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { SecToHours } from "../utils/functions"
 import Inventory from "./inventory"
 import Build from "./build"
+import Equipment from "./equipment"
 
 const characterTabs = ["Main", "Equipment", "Inventory", "Build", "Backstory"]
 type CharacterTabProps = {
@@ -50,6 +51,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
           <span>Playtime: {SecToHours(character?.data?.age)}</span>
           <span>Created: {new Date(character.data.created).toLocaleString()}</span>
         </div>}
+        {(tab === 'Equipment') && <Equipment />}
         {(tab === 'Inventory') && <Inventory bags={character.data.bags} />}
         {(tab === 'Build') && <Build specializations={character.data.specializations} skills={character.data.skills} />}
       </div>}

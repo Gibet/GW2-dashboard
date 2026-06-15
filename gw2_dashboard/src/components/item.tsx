@@ -1,11 +1,25 @@
 import type React from "react";
-import type { ItemType } from "../utils/types/items";
+import type { InventoryItemType, ItemType } from "../utils/types/items";
 
 
-const Item: React.FC<ItemType> = (item: ItemType) => {
+type ItemProps = {
+  item?: ItemType
+  slot?: InventoryItemType
+}
+
+const Item: React.FC<ItemProps> = ({item, slot}) => {
+
+  if (!item) return (<div title='Empty' className='icon'></div>)
+
   return (
-    <div className="item">
-      <img src={item.icon} alt="" />
+    <div className='item' title={item.name} >
+        <img className={item.rarity} src={item.icon} alt=""/>
+        {/* { focused && <ItemTooltip 
+                item={item}
+                details={details}
+        />} */}
+
+        {(slot?.count && slot.count > 1) && <span className='count'>{slot.count}</span>}
     </div>
   )
 }

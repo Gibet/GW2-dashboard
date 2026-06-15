@@ -6,8 +6,8 @@ import Trait from "./trait";
 type TraitLineProps = {
   specialization: SpecializationType;
   traits: {
-    minorTraits: TraitType[];
-    majorTraits: TraitType[];
+    minorTraits: (TraitType | undefined)[];
+    majorTraits: (TraitType | undefined)[];
   }
 };
 

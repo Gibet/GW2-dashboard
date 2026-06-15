@@ -12,3 +12,16 @@ export interface AccountType {
   monthly_ap: number;
   wvw_rank: number;
 }
+
+export interface WalletType {
+  id: number
+  value: number
+}
+
+export interface CurrencyType {
+  id: number
+  name: string
+  description: string
+  icon: string
+  order: number
+}

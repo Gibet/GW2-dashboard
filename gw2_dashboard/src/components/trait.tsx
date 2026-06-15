@@ -3,8 +3,8 @@ import type { TraitType } from "../utils/types/build";
 import TraitTooltip from "./traitTooltip";
 
 type TraitProps = {
-  trait: TraitType;
-  type: string;
+  trait: TraitType | undefined;
+  type: string | undefined;
 };
 
 //this component is used to display a trait
@@ -41,9 +41,9 @@ const Trait: React.FC<TraitProps> = ({ trait, type }) => {
         onMouseMove={(e) => handleMouseMove(e)}
         onMouseLeave={handleMouseExit}
       >
-        <img className="trait" src={trait.icon} alt="" />
+        <img className="trait" src={trait?.icon} alt="" />
       </div>
-      {focused && <TraitTooltip trait={trait} x={pos.x} y={pos.y} />}
+      {(focused && trait) && <TraitTooltip trait={trait} x={pos.x} y={pos.y} />}
     </>
   );
 };

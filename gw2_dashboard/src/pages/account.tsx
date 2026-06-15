@@ -4,6 +4,7 @@ import AccountView from '../components/accountView'
 import Characters from '../components/charactersView'
 import { CharacterProvider } from '../contexts/characterContext'
 import Bank from '../components/bank'
+import Wallet from '../components/wallet'
 
 const tabs = ['Characters', 'Bank', 'Wallet', 'Guilds']
 
@@ -29,7 +30,7 @@ const Account = () => {
         <div>
           { (content === 'Characters') &&  <CharacterProvider><Characters /></CharacterProvider>}
           { (content === 'Bank') &&  <Bank />}
-          { (content === 'Wallet') &&  <></>}
+          { (content === 'Wallet') &&  <Wallet />}
           { (content === 'Guilds') &&  <></>}
         </div>
       </div>}

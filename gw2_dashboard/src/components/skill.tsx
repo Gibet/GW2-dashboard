@@ -39,7 +39,7 @@ const Skill: React.FC<SkillProps> = ({ skill }) => {
       onMouseMove={(e) => handleMouseMove(e)}
       onMouseLeave={handleMouseExit}
     >
-      <img className={`icon`} src={skill.icon} alt="" />
+      <img className={`icon ${skill.slot}`} src={skill.icon} alt="" />
       {focused && <SkillTooltip skill={skill} x={pos.x} y={pos.y} />}
     </div>
   );

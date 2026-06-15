@@ -30,6 +30,12 @@ export interface SkillType {
    icon: string,
    facts: FactType[],
    traited_facts: TraitFactType[]
+   categories?: string[]
+   chat_link?: string
+   slot?: string
+   professions?: string[]
+   specialization?: number
+   weapon_type?: string
 }
 
 export interface TraitSkillType {

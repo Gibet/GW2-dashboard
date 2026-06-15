@@ -1,12 +1,13 @@
 import type React from "react";
 import type { SpecializationType, TraitType } from "../utils/types/build";
 import { useMemo } from "react";
+import Trait from "./trait";
 
 type TraitLineProps = {
   specialization: SpecializationType;
   traits: {
-    minorTraits: (TraitType | undefined)[];
-    majorTraits: (TraitType | undefined)[];
+    minorTraits: TraitType[];
+    majorTraits: TraitType[];
   }
 };
 
@@ -26,7 +27,7 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
   }, [traits.majorTraits])
 
   return (
-    <div key={specialization.id}
+    <div key={specialization.id} title={specialization.name}
       className="traitline w-full overflow-hidden grid grid-cols-10"
       style={{
         backgroundImage: `url(${specialization.background})`,
@@ -37,15 +38,11 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
       </div>
         {traits?.minorTraits.map((minor, index) => (<>
           <div key={minor?.id} className="col-span-1 trait_tier">
-            <div className="trait minor">
-              <img src={minor?.icon} alt="" />
-            </div>
+            <Trait trait={minor} type="minor" />
           </div>
           <div className="trait_tier col-span-1 gap-0.5">
             {major_traits[index]?.map((major) => (
-              <div key={major?.id} className="trait">
-                <img src={major?.icon} alt="" />
-              </div>
+              <Trait trait={major} type="major" />
             ))}
           </div>
         </>))}

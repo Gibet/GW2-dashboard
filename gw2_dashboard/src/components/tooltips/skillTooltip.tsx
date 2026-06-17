@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import type { SkillType, TraitType } from "../utils/types/build";
+import type { SkillType, TraitType } from "../../utils/types/build";
 
 type SkillTooltipProps = {
   skill: SkillType;

@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
-import type { CharacterSpecializationsType, CharacterSkillsType } from "../utils/types/character";
-import { getSkills, getSpecializations, getTraits } from "../utils/services/build";
+import type { CharacterSpecializationsType, CharacterSkillsType } from "../../utils/types/character";
+import { getSkills, getSpecializations, getTraits } from "../../utils/services/build";
 import SkillBar from "./skillBar";
 import TraitLine from "./traitLine";
 

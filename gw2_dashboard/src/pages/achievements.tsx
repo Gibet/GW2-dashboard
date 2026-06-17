@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Achievments = () => {
+const Achievements = () => {
 
   return (
     <div>
@@ -9,4 +9,4 @@ const Achievments = () => {
   )
 }
 
-export default Achievments
+export default Achievements

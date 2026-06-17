@@ -27,3 +27,8 @@ export const getCurrencies = async (ids: number[]): Promise<CurrencyType[]> => {
   })
   return query.data
 }
+
+export const getAccountAchievments = async () => {
+  const query = await API.get("account/achievments")
+  return query.data
+}

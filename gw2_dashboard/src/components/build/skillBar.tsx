@@ -1,5 +1,5 @@
 import type React from "react";
-import type { SkillType } from "../utils/types/build";
+import type { SkillType } from "../../utils/types/build";
 import Skill from "./skill";
 
 type SkillBarProps = {

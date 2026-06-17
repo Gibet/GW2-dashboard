@@ -1,5 +1,5 @@
 import type React from "react";
-import type { SpecializationType, TraitType } from "../utils/types/build";
+import type { SpecializationType, TraitType } from "../../utils/types/build";
 import { useMemo } from "react";
 import Trait from "./trait";
 

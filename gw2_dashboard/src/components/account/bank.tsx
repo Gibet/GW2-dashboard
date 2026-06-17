@@ -1,7 +1,7 @@
 import type React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getAccountBank, getSharedInventory } from "../utils/services/account";
-import Inventory from "./inventory";
+import { getAccountBank, getSharedInventory } from "../../utils/services/account";
+import Inventory from "../items/inventoryView";
 
 
 const Bank = () => {

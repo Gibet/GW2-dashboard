@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useAccount } from '../contexts/accountContext'
-import AccountView from '../components/accountView'
-import Characters from '../components/charactersView'
+import AccountView from '../components/account/accountView'
+import Characters from '../components/account/charactersView'
 import { CharacterProvider } from '../contexts/characterContext'
-import Bank from '../components/bank'
-import Wallet from '../components/wallet'
+import Bank from '../components/account/bank'
+import Wallet from '../components/account/wallet'
 
 const tabs = ['Characters', 'Bank', 'Wallet', 'Guilds']
 

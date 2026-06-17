@@ -31,7 +31,7 @@ export interface DetailsType {
   min_power?: number
   max_power?: number
   // bag
-  size?: number,
+  size?: number
   no_sell_or_sort?: boolean
   // consumable
   description?: string
@@ -48,7 +48,7 @@ export interface DetailsType {
   // gizmo
   vendor_ids?: number[]
   // minipet
-  minipet_id?: number,
+  minipet_id?: number
   // salvage kit
   charges?: number
   //upgrade component
@@ -72,7 +72,7 @@ export interface InventoryItemType {
 }
 
 export interface InventorySlotType {
-  info: InventoryItemType,
+  info: InventoryItemType
   item: ItemType
 }
 
@@ -88,7 +88,7 @@ export interface InfixType {
 }
 
 export interface InfixAttributeType {
-  attribute: string,
+  attribute: string
   modifier: number
 }
 

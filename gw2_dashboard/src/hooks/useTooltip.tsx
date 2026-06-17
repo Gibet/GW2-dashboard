@@ -25,7 +25,7 @@ const useTooltip = () => {
     setFocused(false);
   };
 
-  return { focused, pos, handleMouseEnter, handleMouseExit, handleMouseMove};
+  return { focused, pos, handleMouseEnter, handleMouseExit, handleMouseMove };
 };
 
-export default useTooltip
+export default useTooltip;

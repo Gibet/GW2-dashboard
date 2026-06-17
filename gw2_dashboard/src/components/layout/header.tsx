@@ -16,8 +16,8 @@ const Header :React.FC = () => {
         </button>
         <div className='flex gap-2'>
           <Link to={'/'}>Home</Link>
-          {account?.data && <Link to={'/account'}>Account</Link>}
-          <Link to={'/achievments'}>Achievments</Link>
+          {account?.permissions?.includes("account") && <Link to={'/account'}>Account</Link>}
+          <Link to={'/achievements'}>Achievements</Link>
         </div>
       </nav>
     </header>

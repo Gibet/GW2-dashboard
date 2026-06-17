@@ -20,7 +20,7 @@ const Trait: React.FC<TraitProps> = ({ trait, type }) => {
         onMouseMove={(e) => tooltip.handleMouseMove(e)}
         onMouseLeave={tooltip.handleMouseExit}
       >
-        <img className="trait" src={trait?.icon} alt="" />
+        <img className="w-full h-full" src={trait?.icon} alt="" />
       </div>
       {(tooltip.focused && trait) && <TraitTooltip trait={trait} x={tooltip.pos.x} y={tooltip.pos.y} />}
     </>

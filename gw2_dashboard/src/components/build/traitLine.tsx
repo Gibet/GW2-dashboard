@@ -8,7 +8,8 @@ type TraitLineProps = {
   traits: {
     minorTraits: (TraitType | undefined)[];
     majorTraits: (TraitType | undefined)[];
-  }
+    weaponTrait: TraitType | undefined;
+  };
 };
 
 const chunk = <T,>(items: T[], size: number): T[][] => {
@@ -20,32 +21,40 @@ const chunk = <T,>(items: T[], size: number): T[][] => {
 };
 
 const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
-
   const major_traits = useMemo(() => {
     const validMajorTraits = traits.majorTraits.filter(Boolean);
     return chunk(validMajorTraits, 3);
-  }, [traits.majorTraits])
+  }, [traits.majorTraits]);
 
   return (
-    <div key={specialization.id} title={specialization.name}
+    <div
+      key={specialization.id}
+      title={specialization.name}
       className="traitline w-full overflow-hidden grid grid-cols-10"
       style={{
         backgroundImage: `url(${specialization.background})`,
       }}
     >
       <div className="col-span-4 h-full flex justify-center items-center line_icon">
-        <span className="h-11/12 w-1/2"></span>
+        <span></span>
       </div>
-        {traits?.minorTraits.map((minor, index) => (<>
+      <span className="weapon_proficiency">
+        {specialization.weapon_trait && (
+          <Trait trait={traits.weaponTrait} type="minor" />
+        )}
+      </span>
+      {traits?.minorTraits.map((minor, index) => (
+        <>
           <div key={minor?.id} className="col-span-1 trait_tier">
             <Trait trait={minor} type="minor" />
           </div>
-          <div className="trait_tier col-span-1 gap-0.5">
+          <div className="trait_tier col-span-1 gap-1">
             {major_traits[index]?.map((major) => (
               <Trait trait={major} type="major" />
             ))}
           </div>
-        </>))}
+        </>
+      ))}
     </div>
   );
 };

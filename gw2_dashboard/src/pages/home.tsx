@@ -54,11 +54,17 @@ const Home = () => {
       </div>
       {isPending && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
-      {account?.data && account?.permissions?.includes("account") && (
+      {(account?.data && account?.permissions) && (<div>
         <div className="h-full w-full flex">
           <div className="items-center justify-center">Welcome {account.data.name}</div>
         </div>
-      )}
+        <span>API Permissions: </span>
+        <div className="flex gap-2">
+          {account?.permissions?.map((permission) => (
+            <span>{permission}</span>
+          ))}
+        </div>
+      </div>)}
     </div>
   );
 };

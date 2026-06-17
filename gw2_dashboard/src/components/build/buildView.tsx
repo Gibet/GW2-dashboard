@@ -36,7 +36,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
 
 
   const traitsIds = useMemo(() => 
-    specs ? specs.flatMap((spec) => [...spec.minor_traits, ...spec.major_traits]) : []
+    specs ? specs.flatMap((spec) => [...spec.minor_traits, ...spec.major_traits, ...(spec.weapon_trait ? [spec.weapon_trait]: []) ]) : []
   , [specs])
 
   const { data: traits, isLoading: loadingTraits, isError: isErrorTraits, error: errorTraits } = useQuery({
@@ -52,6 +52,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
     return specs.map(spec => ({
       minorTraits: spec.minor_traits.map(id => traitMap.get(id)).filter(Boolean),
       majorTraits: spec.major_traits.map(id => traitMap.get(id)).filter(Boolean),
+      weaponTrait: spec.weapon_trait ? traitMap.get(spec.weapon_trait) : undefined,
     }));
   }, [traits, specs])
   

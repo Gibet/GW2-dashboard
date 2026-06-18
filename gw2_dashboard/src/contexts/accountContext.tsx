@@ -44,7 +44,7 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [token, setToken] = useState<string | undefined>(getStoredApiKey);
   const [permissions, setPermissions] = useState<string[]>([]);
-  const [data, setData] = useState<AccountType>()
+  const [data, setData] = useState<AccountType>();
 
   useEffect(() => {
     try {

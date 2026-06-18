@@ -13,12 +13,17 @@ export const getAchievementGroups = async (): Promise<number[]> => {
   return query.data
 }
 
-export const getAchievementGroupData = async (ids: number[]): Promise<AchievementGroupType[]> => {
-  const query = await API.get<AchievementGroupType[]>("achievements/groups")
+export const getAchievementGroupData = async (): Promise<AchievementGroupType[]> => {
+  const ids = await getAchievementGroups()
+  const query = await API.get<AchievementGroupType[]>("achievements/groups", {
+    params: { ids: ids.join(",")}
+  })
   return query.data
 }
 
 export const getAchievementCategory = async (ids: number[]): Promise<AchievementCategoryType[]> => {
-  const query = await API.get<AchievementCategoryType[]>("achievements/categories")
+  const query = await API.get<AchievementCategoryType[]>("achievements/categories", {
+    params: { ids: ids.join(",")}
+  })
   return query.data
 }

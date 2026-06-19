@@ -42,7 +42,7 @@ const Equipment = () => {
   }, [character?.data?.equipment, gear]);
 
   return (
-    <div className="w-full overflow-auto">
+    <div className={`${character?.data?.race} w-full overflow-auto`}>
       {loadingGear && <div>Loading Equipment...</div>}
       {isErrorGear && (
         <div className="text-red-500">Error: {errorGear?.message}</div>

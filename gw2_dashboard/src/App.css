@@ -17,19 +17,62 @@
   --Elite : goldenrod;
 
   /* Theme */
-  --primary : rgb(25, 25, 25);
-  --secondary : rgb(0, 0, 0);
-  --tertiaryAccent : rgba(15, 15, 15, 1);
-  --background : rgb(40, 40, 40);
+  --primary : rgb(240, 240, 240);
+  --secondary : rgb(20, 20, 20);
+  --tertiaryAccent : rgba(255, 255, 255, 1);
+  --background : rgb(255, 255, 255);
+  --backgroundSecondary : rgb(50, 50, 50);
+  --sectHeader : rgba(255, 255, 255, 0.7);
+  --sectBody : rgba(240, 240, 240, 0.7);
   --disabled : rgba(150, 150, 150, 0.1);
   --disabledColor : rgba(150, 150, 150, 0.2);
-  --text : rgb(223, 223, 223) ;
-  --headerBg : rgba(50, 50, 50, 0.3);
-  --buttonBg : rgb(20, 20, 20);
-  --shadow : 0px 8px 8px 5px rgba(0, 0, 0, 0.05);
-  --dividerColor: rgba(255, 255, 255, 0.1);
+  --text : rgb(37, 37, 37);
+  --headerBg : rgba(255, 255, 255, 0.3);
+  --buttonBg : rgb(233, 233, 233);
+  --shadow : 0px 4px 4px 2px rgba(65, 65, 65, 0.05);
+  --sectionShadow : 0px 0px 25px rgba(0, 0, 0, 0.05);
+  --shadowSecondary : 0px 4px 8px rgba(185, 185, 185, 0.1);
+  --bgPattern1: rgba(0, 0, 0, 0.05);
+  --bgPattern2: rgba(0, 0, 0, 0.1);
+  --bgPattern3: rgba(0, 0, 0, 0.15);
+  --bgPattern4: rgba(0, 0, 0, 0.2);
+  --bgPattern5: rgba(0, 0, 0, 0.25);
+  --bgPattern6: rgba(0, 0, 0, 0.3);
+  --commandShadow: 3px 3px 1px rgba(65, 65, 65, 0.1);
+  --commandText: rgb(50, 50, 50);
+  --dividerColor: rgba(0, 0, 0, 0.15);
+  --homeMarker: rgba(75, 75, 75, 0.03);
+  --aboutMarker: rgba(75, 75, 75, 0.06);
+  --projectsMarker: rgba(75, 75, 75, 0.09);
+  --contactMarker: rgba(75, 75, 75, 0.12);
+  
+  --accent : rgba(221, 149, 113, 0.9);
+  
+  --commandBgDot: rgba(70, 129, 137, 0.9);
+  --commandBgMain: rgba(184, 198, 192, 0.9);
+  --commandBgTitle: rgba(70, 129, 137, 0.9);
+  --commandBgMainTertiary: rgba(255, 255, 255, 0.9);
+  --commandBgSub: rgba(221, 149, 113, 0.9);
 
-  --accent : rgba(222, 186, 111, 0.9);
+  --activeMarker: rgba(70, 129, 137, 0.5);
+}
+
+[data-theme="light"] {
+  .Sylvari {
+    background-image: url("images/Races/Art/Sylvari.jpg");
+  }
+  .Asura {
+    background-image: url("images/Races/Art/Asura.jpg");
+  }
+  .Human {
+    background-image: url("images/Races/Art/Human.jpg");
+  }
+  .Norn {
+    background-image: url("images/Races/Art/Norn.jpg");
+  }
+  .Charr {
+    background-image: url("images/Races/Art/Charr.jpg");
+  }
 }
 
 [data-theme="dark"] {
@@ -60,6 +103,12 @@
 .Fine {border:1px solid var(--Fine);}
 .Basic {border:1px solid var(--Basic);}
 .Junk {border:1px solid var(--Junk);}
+
+.Sylvari, .Asura, .Norn, .Human, .Charr {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 body {
   max-height: 100vh;
@@ -94,6 +143,8 @@ header {
 }
 
 footer { height: 150px;}
+
+
 
 #gear {
     display: flex;
@@ -165,13 +216,19 @@ footer { height: 150px;}
     margin: 1% 0;
 }
 
-.line_icon {filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)); position: relative}
-.line_icon span, .minor img, .weapon_trait{clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #00000023;}
+.line_icon {
+  filter: drop-shadow(0px 0px 2px rgb(0, 0, 0));
+  position: relative
+}
+.minor img, .weapon_trait{clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #00000023;}
 .line_icon span {
+  background: url('images/trait-icon.png') no-repeat;
+  background-size: cover;
+  background-position: center;
   position: absolute;
-  top: 10%;
-  right: 30%;
-  height: 80%;
+  top: 0%;
+  right: 34%;
+  height: 100%;
   width: 40%;
 }
 
@@ -203,6 +260,11 @@ footer { height: 150px;}
     flex: .5 0 auto;
     height: 100%;
     width: 12%;
+}
+
+.skill {
+    height: 60px;
+    width: 60px;
 }
 
 .inventory {

@@ -43,13 +43,13 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
       {isLoading && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
       {(character?.data && !isLoading)  && <div className="flex flex-col items-center p-4 h-full overflow-auto">
-        {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left h-full">
+        {(tab === 'Main') && <div className={`w-full flex flex-col col-span-4 text-left h-full ${character.data.race}`}>
           <span>Name: {character.data.name}</span>
-          <span>Race: {character?.data?.race}</span>
+          <span>Race: {character?.data?.race} - {character.data.gender}</span>
           <span>Profession: {character?.data?.profession}</span>
           <span>Level: {character?.data?.level}</span>
           <span>Playtime: {SecToHours(character?.data?.age)}</span>
-          <span>Created: {new Date(character.data.created).toLocaleString()}</span>
+          <ul>Crafting: {character?.data.crafting.map((training) => (<li key={training.discipline} className="px-4">{training.discipline} - level {training.rating}</li>))}</ul>
         </div>}
         {(tab === 'Equipment') && <Equipment />}
         {(tab === 'Inventory') && <Inventory bags={character.data.bags} />}

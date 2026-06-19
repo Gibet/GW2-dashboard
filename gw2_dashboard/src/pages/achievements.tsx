@@ -137,8 +137,8 @@ const Achievements = () => {
   } */
 
   return (
-    <div className="grid grid-cols-4">
-      <div className="col-span-1 flex flex-col gap-1 border-r py-4 px-3 text-left">
+    <div className="page_content grid grid-cols-5 h-full">
+      <div className="col-span-2 flex flex-col gap-1 border-r py-4 px-3 text-left h-full overflow-auto">
         {loadingGrps && <div>Loading...</div>}
         {isErrorGrps && (
           <div className="text-red-500">Error: {errorGrps?.message}</div>
@@ -175,7 +175,7 @@ const Achievements = () => {
           ))}
         </Accordion>
       </div>
-      <div className="col-span-3">
+      <div className="col-span-3 w-full overflow-auto">
         {(group && category) && (
           <AchievementsView
             ids={category.achievements}

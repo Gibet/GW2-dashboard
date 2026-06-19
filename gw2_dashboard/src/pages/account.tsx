@@ -6,15 +6,15 @@ import { CharacterProvider } from '../contexts/characterContext'
 import Bank from '../components/account/bank'
 import Wallet from '../components/account/wallet'
 
-const tabs = ['Characters', 'Bank', 'Wallet', 'Guilds']
+const tabs = ['Characters', 'Bank', 'Wallet']
 
 const Account = () => {
   const account = useAccount()
   const [content, setContent] = useState<string>('Characters')
 
   return (
-    <div className='p-4'>
-      { account && <div>
+    <div className='page_content flex-col px-4'>
+      { account && <>
         <div>
           {account?.data && <AccountView {...account.data} />}
         </div>
@@ -27,13 +27,12 @@ const Account = () => {
           ))}
         </div>
         <hr />
-        <div>
+        <div className='h-full overflow-hidden'>
           { (content === 'Characters') &&  <CharacterProvider><Characters /></CharacterProvider>}
           { (content === 'Bank') &&  <Bank />}
           { (content === 'Wallet') &&  <Wallet />}
-          { (content === 'Guilds') &&  <></>}
         </div>
-      </div>}
+      </>}
     </div>
   )
 }

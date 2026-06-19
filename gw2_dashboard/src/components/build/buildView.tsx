@@ -57,7 +57,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
   }, [traits, specs])
   
   return (
-    <div className="flex flex-col w-full items-start gap-4">
+    <div className="flex flex-col w-full items-start gap-4 h-full overflow-auto">
       <div className="flex gap-3 mb-3">
         <button onClick={() => setTab('pve')}>PVE</button>
         <button onClick={() => setTab('pvp')}>PVP</button>

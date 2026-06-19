@@ -10,7 +10,7 @@ const Header :React.FC = () => {
 
   return (
     <header>
-      <nav className='flex justify-between px-4'>
+      <nav className='flex justify-between items-center px-4 h-full'>
         <button onClick={theme.toggleTheme}>
           {theme.theme}
         </button>

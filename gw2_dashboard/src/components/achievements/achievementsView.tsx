@@ -22,7 +22,7 @@ const AchievementsView: React.FC<AchievementsProps> = ({ ids, accountAchievement
   });
 
   return (
-    <div>
+    <>
       {loadingAchmnts && <div>Loading...</div>}
         {isErrorAchmnts && (
           <div className="text-red-500">Error: {errorAchmnts?.message}</div>
@@ -34,7 +34,7 @@ const AchievementsView: React.FC<AchievementsProps> = ({ ids, accountAchievement
             }/>
           </div>
         ))}
-    </div>
+    </>
   )
 };
 

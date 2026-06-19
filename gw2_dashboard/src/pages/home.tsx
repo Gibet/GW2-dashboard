@@ -8,7 +8,7 @@ const Home = () => {
   const queryClient = useQueryClient()
   const [input, setInput] = useState(account?.token || "");
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['account'],
     queryFn: getAccount,
     enabled: !!(account?.token)
@@ -30,7 +30,7 @@ const Home = () => {
   }, [data, account]);
 
   return (
-    <div className="p-4">
+    <div className="page_content flex-col p-4">
       <div className="flex gap-2 justify-end">
         <form
           onSubmit={(e) => {
@@ -52,7 +52,7 @@ const Home = () => {
         </form>
         <button onClick={resetToken}>Reset</button>
       </div>
-      {isPending && <div>Loading...</div>}
+      {isLoading && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
       {(account?.data && account?.permissions) && (<div>
         <div className="h-full w-full flex">

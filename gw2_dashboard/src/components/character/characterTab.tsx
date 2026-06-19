@@ -33,7 +33,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
 }, [name])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full overflow-hidden">
       <div className="flex gap-3 p-4">
         {characterTabs.map((tab) => (
           <button key={tab} onClick={() => setTab(tab)}>{(tab === "Main") ? name : tab}</button>
@@ -42,8 +42,8 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
       <hr />
       {isLoading && <div>Loading...</div>}
       {isError && <div className="text-red-500">Error: {error?.message}</div>}
-      {(character?.data && !isLoading)  && <div className="flex flex-col justify-center items-center p-4">
-        {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left">
+      {(character?.data && !isLoading)  && <div className="flex flex-col items-center p-4 h-full overflow-auto">
+        {(tab === 'Main') && <div className="w-full flex flex-col col-span-4 text-left h-full">
           <span>Name: {character.data.name}</span>
           <span>Race: {character?.data?.race}</span>
           <span>Profession: {character?.data?.profession}</span>

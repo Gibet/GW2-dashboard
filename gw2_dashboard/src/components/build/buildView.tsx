@@ -73,8 +73,8 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
         )}
       </div>
       <div className="w-full">
-        {(loadingSpecs && loadingTraits) && <div>Loading Specializations...</div>}
-        {(isErrorSpecs && isErrorTraits) && <div className="text-red-500">
+        {(loadingSpecs || loadingTraits) && <div>Loading Specializations...</div>}
+        {(isErrorSpecs || isErrorTraits) && <div className="text-red-500">
           <span>Error Specializations: {errorSpecs?.message}</span>
           <span>Error Traits: {errorTraits?.message}</span>
         </div>}

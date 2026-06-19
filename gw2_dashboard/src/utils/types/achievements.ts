@@ -46,7 +46,7 @@ export interface AchievementCategoryType {
   description: string
   order: number
   icon: string
-  achievements: number[] | CategoryAchievementType[]
+  achievements: number[] /* | CategoryAchievementType[] */
   tommorow?: CategoryAchievementType[]
 }
 

@@ -2,6 +2,7 @@ import type React from "react";
 import type { SpecializationType, TraitType } from "../../utils/types/build";
 import { useMemo } from "react";
 import Trait from "./trait";
+import { chunk } from "../../utils/functions";
 
 type TraitLineProps = {
   specialization: SpecializationType;
@@ -10,14 +11,6 @@ type TraitLineProps = {
     majorTraits: (TraitType | undefined)[];
     weaponTrait: TraitType | undefined;
   };
-};
-
-const chunk = <T,>(items: T[], size: number): T[][] => {
-  const chunks: T[][] = [];
-  for (let i = 0; i < items.length; i += size) {
-    chunks.push(items.slice(i, i + size));
-  }
-  return chunks;
 };
 
 const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {

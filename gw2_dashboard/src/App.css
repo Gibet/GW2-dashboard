@@ -257,6 +257,26 @@
     }
 }
 
+.achievement-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1%;
+    border: 1px solid lightgray;
+}
+
+.achievement-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img {
+        width: 35px;
+        height: auto;
+        margin-right: 1%;
+    }
+}
+
 /* */
 
 .counter {

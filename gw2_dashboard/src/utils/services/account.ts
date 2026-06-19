@@ -1,5 +1,5 @@
 import API from "../api";
-import type { AccountType, CurrencyType, WalletType } from "../types/account";
+import type { AccountAchievementType, AccountType, CurrencyType, WalletType } from "../types/account";
 import type { InventoryItemType } from "../types/items";
 
 export const getAccount = async (): Promise<AccountType> => {
@@ -28,7 +28,7 @@ export const getCurrencies = async (ids: number[]): Promise<CurrencyType[]> => {
   return query.data
 }
 
-export const getAccountAchievements = async () => {
-  const query = await API.get("account/achievements")
+export const getAccountAchievements = async (): Promise<AccountAchievementType[]> => {
+  const query = await API.get<AccountAchievementType[]>("account/achievements")
   return query.data
 }

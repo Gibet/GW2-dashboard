@@ -26,7 +26,7 @@ export interface CurrencyType {
   order: number
 }
 
-export interface AccountAchievement {
+export interface AccountAchievementType {
   id: number
   bits?: number[]
   current?: number

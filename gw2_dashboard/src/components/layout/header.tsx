@@ -1,10 +1,12 @@
 import React from 'react'
-import { useTheme } from '../contexts/themeContext'
+import { useTheme } from '../../contexts/themeContext'
 import { Link } from 'react-router';
+import { useAccount } from '../../contexts/accountContext';
 
 const Header :React.FC = () => {
 
   const theme = useTheme();
+  const account = useAccount()
 
   return (
     <header>
@@ -14,8 +16,8 @@ const Header :React.FC = () => {
         </button>
         <div className='flex gap-2'>
           <Link to={'/'}>Home</Link>
-          <Link to={'/account'}>Account</Link>
-          <Link to={'/achievments'}>Achievments</Link>
+          {account?.permissions?.includes("account") && <Link to={'/account'}>Account</Link>}
+          <Link to={'/achievements'}>Achievements</Link>
         </div>
       </nav>
     </header>

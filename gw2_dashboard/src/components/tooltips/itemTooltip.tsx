@@ -1,5 +1,5 @@
 import type React from "react";
-import type { InventoryItemType, ItemType } from "../utils/types/items";
+import type { InventoryItemType, ItemType } from "../../utils/types/items";
 import { useLayoutEffect, useRef, useState } from "react";
 
 type ItemProps = {

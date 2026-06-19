@@ -1,9 +1,9 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
-import type { EquipmentType, GearSetType } from "../utils/types/character";
-import { useCharacter } from "../contexts/characterContext";
-import { getItems } from "../utils/services/items";
-import Item from "./item";
+import type { EquipmentType, GearSetType } from "../../utils/types/character";
+import { useCharacter } from "../../contexts/characterContext";
+import { getItems } from "../../utils/services/items";
+import Item from "../items/item";
 
 const Equipment = () => {
   const character = useCharacter();

@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import type { SkillType, TraitType } from "../utils/types/build";
-import SkillTooltip from "./skillTooltip";
 
-type SkillProps = {
-  skill: SkillType;
-};
-
-//this component is used to display a trait
-const Skill: React.FC<SkillProps> = ({ skill }) => {
+const useTooltip = () => {
   const [focused, setFocused] = useState<boolean>(false);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
@@ -32,17 +25,7 @@ const Skill: React.FC<SkillProps> = ({ skill }) => {
     setFocused(false);
   };
 
-  return (
-    <div
-      className="skill"
-      onMouseEnter={(e) => handleMouseEnter(e)}
-      onMouseMove={(e) => handleMouseMove(e)}
-      onMouseLeave={handleMouseExit}
-    >
-      <img className={`icon ${skill.slot}`} src={skill.icon} alt="" />
-      {focused && <SkillTooltip skill={skill} x={pos.x} y={pos.y} />}
-    </div>
-  );
+  return { focused, pos, handleMouseEnter, handleMouseExit, handleMouseMove };
 };
 
-export default Skill;
+export default useTooltip;

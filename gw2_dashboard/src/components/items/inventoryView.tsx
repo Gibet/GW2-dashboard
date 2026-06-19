@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
-import type { BagType, InventorySlotType } from "../utils/types/items";
-import { getItems } from "../utils/services/items";
+import type { BagType, InventorySlotType } from "../../utils/types/items";
+import { getItems } from "../../utils/services/items";
 import Item from "./item";
 
 type InventoryProps = {

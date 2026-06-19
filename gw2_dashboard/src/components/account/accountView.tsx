@@ -1,6 +1,6 @@
 import type React from "react";
-import type { AccountType } from "../utils/types/account";
-import { SecToHours } from "../utils/functions";
+import type { AccountType } from "../../utils/types/account";
+import { SecToHours } from "../../utils/functions";
 
 
 const AccountView: React.FC<AccountType> = (props: AccountType) => {

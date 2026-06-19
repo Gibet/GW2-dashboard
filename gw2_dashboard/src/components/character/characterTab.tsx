@@ -1,10 +1,10 @@
-import { useCharacter } from "../contexts/characterContext"
+import { useCharacter } from "../../contexts/characterContext"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { getCharacter } from "../utils/services/characters"
+import { getCharacter } from "../../utils/services/characters"
 import { useEffect, useState } from "react"
-import { SecToHours } from "../utils/functions"
-import Inventory from "./inventory"
-import Build from "./build"
+import { SecToHours } from "../../utils/functions"
+import Inventory from "../items/inventoryView"
+import Build from "../build/buildView"
 import Equipment from "./equipment"
 
 const characterTabs = ["Main", "Equipment", "Inventory", "Build", "Backstory"]

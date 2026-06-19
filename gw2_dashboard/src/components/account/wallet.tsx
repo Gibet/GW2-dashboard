@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
-import { getAccountWallet, getCurrencies } from "../utils/services/account";
+import { getAccountWallet, getCurrencies } from "../../utils/services/account";
 
 const Wallet = () => {
   const {

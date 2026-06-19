@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getAccountCharacters } from "../utils/services/characters";
+import { getAccountCharacters } from "../../utils/services/characters";
 import { useQuery } from '@tanstack/react-query'
-import CharacterTab from "./characterTab";
+import CharacterTab from "../character/characterTab";
 
 const Characters = () => {
   const [characters, setCharacters] = useState<string[]>([]);

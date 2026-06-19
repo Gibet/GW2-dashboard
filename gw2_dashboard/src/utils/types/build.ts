@@ -1,34 +1,35 @@
 export interface SpecializationType {
-   id: number,
-   name: string,
-   profession: string,
-   elite: boolean,
-   minor_traits: number[],
-   major_traits: number[],
-   icon: string,
+   id: number
+   name: string
+   profession: string
+   elite: boolean
+   minor_traits: number[]
+   major_traits: number[]
+   icon: string
    background: string
+   weapon_trait?: number
 }
 
 export interface TraitType {
-   id: number,
-   name: string,
-   icon: string,
-   description: string,
-   specialization: number,
-   tier: number,
-   order: number,
-   slot: string,
-   facts: FactType[],
-   traited_facts: TraitFactType[],
-   skills: TraitSkillType[],
+   id: number
+   name: string
+   icon: string
+   description: string
+   specialization: number
+   tier: number
+   order: number
+   slot: string
+   facts: FactType[]
+   traited_facts: TraitFactType[]
+   skills: TraitSkillType[]
 }
 
 export interface SkillType {
-   id: number,
-   name: string,
-   description: string,
-   icon: string,
-   facts: FactType[],
+   id: number
+   name: string
+   description: string
+   icon: string
+   facts: FactType[]
    traited_facts: TraitFactType[]
    categories?: string[]
    chat_link?: string
@@ -39,21 +40,21 @@ export interface SkillType {
 }
 
 export interface TraitSkillType {
-   id: number,
-   name: string,
-   description: string,
-   icon: string,
-   facts: FactType[],
+   id: number
+   name: string
+   description: string
+   icon: string
+   facts: FactType[]
    traited_facts: TraitFactType[]
 }
 
 export interface FactType {
-   text: string,
-   icon: string,
+   text: string
+   icon: string
    type: string
 }
 
 export interface TraitFactType {
-   required_trait: number,
+   required_trait: number
    overrides: number
 }

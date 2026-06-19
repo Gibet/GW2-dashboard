@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
-import type { CharacterSpecializationsType, CharacterSkillsType } from "../utils/types/character";
-import { getSkills, getSpecializations, getTraits } from "../utils/services/build";
+import type { CharacterSpecializationsType, CharacterSkillsType } from "../../utils/types/character";
+import { getSkills, getSpecializations, getTraits } from "../../utils/services/build";
 import SkillBar from "./skillBar";
 import TraitLine from "./traitLine";
 
@@ -36,7 +36,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
 
 
   const traitsIds = useMemo(() => 
-    specs ? specs.flatMap((spec) => [...spec.minor_traits, ...spec.major_traits]) : []
+    specs ? specs.flatMap((spec) => [...spec.minor_traits, ...spec.major_traits, ...(spec.weapon_trait ? [spec.weapon_trait]: []) ]) : []
   , [specs])
 
   const { data: traits, isLoading: loadingTraits, isError: isErrorTraits, error: errorTraits } = useQuery({
@@ -52,6 +52,7 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
     return specs.map(spec => ({
       minorTraits: spec.minor_traits.map(id => traitMap.get(id)).filter(Boolean),
       majorTraits: spec.major_traits.map(id => traitMap.get(id)).filter(Boolean),
+      weaponTrait: spec.weapon_trait ? traitMap.get(spec.weapon_trait) : undefined,
     }));
   }, [traits, specs])
   
@@ -72,8 +73,8 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
         )}
       </div>
       <div className="w-full">
-        {(loadingSpecs && loadingTraits) && <div>Loading Specializations...</div>}
-        {(isErrorSpecs && isErrorTraits) && <div className="text-red-500">
+        {(loadingSpecs || loadingTraits) && <div>Loading Specializations...</div>}
+        {(isErrorSpecs || isErrorTraits) && <div className="text-red-500">
           <span>Error Specializations: {errorSpecs?.message}</span>
           <span>Error Traits: {errorTraits?.message}</span>
         </div>}

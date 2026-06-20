@@ -2,6 +2,7 @@ import {
   useAccordionContext,
   useAccordionItemContext,
 } from "../../../contexts/accordionContext";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 type AccordionTriggerProps = {
   children: React.ReactNode;
@@ -22,9 +23,14 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   // context can be null
   if (!context || !item) return null;
   return (
-    <div>
-      <button onClick={handleClick}>
+    <div className="w-full">
+      <button onClick={handleClick} className="flex w-full text-left justify-between">
         {children}
+        <span>
+          {context.activeContent === item.id ? (<span><ChevronUp /></span>) :
+            (<span><ChevronDown /></span>)
+          }
+        </span>
       </button>
     </div>
   );

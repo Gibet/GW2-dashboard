@@ -21,58 +21,24 @@
   --secondary : rgb(20, 20, 20);
   --tertiaryAccent : rgba(255, 255, 255, 1);
   --background : rgb(255, 255, 255);
-  --backgroundSecondary : rgb(50, 50, 50);
-  --sectHeader : rgba(255, 255, 255, 0.7);
-  --sectBody : rgba(240, 240, 240, 0.7);
   --disabled : rgba(150, 150, 150, 0.1);
   --disabledColor : rgba(150, 150, 150, 0.2);
   --text : rgb(37, 37, 37);
   --headerBg : rgba(255, 255, 255, 0.3);
   --buttonBg : rgb(233, 233, 233);
   --shadow : 0px 4px 4px 2px rgba(65, 65, 65, 0.05);
-  --sectionShadow : 0px 0px 25px rgba(0, 0, 0, 0.05);
-  --shadowSecondary : 0px 4px 8px rgba(185, 185, 185, 0.1);
-  --bgPattern1: rgba(0, 0, 0, 0.05);
-  --bgPattern2: rgba(0, 0, 0, 0.1);
-  --bgPattern3: rgba(0, 0, 0, 0.15);
-  --bgPattern4: rgba(0, 0, 0, 0.2);
-  --bgPattern5: rgba(0, 0, 0, 0.25);
-  --bgPattern6: rgba(0, 0, 0, 0.3);
-  --commandShadow: 3px 3px 1px rgba(65, 65, 65, 0.1);
-  --commandText: rgb(50, 50, 50);
   --dividerColor: rgba(0, 0, 0, 0.15);
-  --homeMarker: rgba(75, 75, 75, 0.03);
-  --aboutMarker: rgba(75, 75, 75, 0.06);
-  --projectsMarker: rgba(75, 75, 75, 0.09);
-  --contactMarker: rgba(75, 75, 75, 0.12);
   
   --accent : rgba(221, 149, 113, 0.9);
-  
-  --commandBgDot: rgba(70, 129, 137, 0.9);
-  --commandBgMain: rgba(184, 198, 192, 0.9);
-  --commandBgTitle: rgba(70, 129, 137, 0.9);
-  --commandBgMainTertiary: rgba(255, 255, 255, 0.9);
-  --commandBgSub: rgba(221, 149, 113, 0.9);
-
-  --activeMarker: rgba(70, 129, 137, 0.5);
+  --progress: rgba(75, 184, 65, 0.185);
 }
 
 [data-theme="light"] {
-  .Sylvari {
-    background-image: url("images/Races/Art/Sylvari.jpg");
-  }
-  .Asura {
-    background-image: url("images/Races/Art/Asura.jpg");
-  }
-  .Human {
-    background-image: url("images/Races/Art/Human.jpg");
-  }
-  .Norn {
-    background-image: url("images/Races/Art/Norn.jpg");
-  }
-  .Charr {
-    background-image: url("images/Races/Art/Charr.jpg");
-  }
+  .Sylvari {background-image: url("images/Races/Art/Sylvari.jpg");}
+  .Asura {background-image: url("images/Races/Art/Asura.jpg");}
+  .Human {background-image: url("images/Races/Art/Human.jpg");}
+  .Norn {background-image: url("images/Races/Art/Norn.jpg");}
+  .Charr {background-image: url("images/Races/Art/Charr.jpg");}
 }
 
 [data-theme="dark"] {
@@ -90,6 +56,10 @@
 
   --accent : rgba(222, 186, 111, 0.9);
 }
+button {cursor: pointer;}
+[data-active=true] {
+    font-weight: bold;
+}
 
 .Heal {border: 1px solid var(--Heal);}
 .Utility {border: 1px solid var(--Utility);}
@@ -104,10 +74,47 @@
 .Basic {border:1px solid var(--Basic);}
 .Junk {border:1px solid var(--Junk);}
 
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/fonts/PT_Serif/PTSerif-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-weight: 400;
+  font-style: swap;
+}
+
+.PT_Serif {
+  font-family: 'PT Serif', monospace;
+  font-weight: 400;
+}
+
 .Sylvari, .Asura, .Norn, .Human, .Charr {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.sprite-Sylvari, .sprite-Asura, .sprite-Charr, .sprite-Human, .sprite-Norn, .sprite-home {
+    height: 24px;
+    width: 24px;
+    background-size: contain;
+}
+.sprite-account {
+    height: 20px;
+    width: 20px;
+    background-size: contain;
+}
+
+.sprite-Sylvari {background-image: url("images/Races/Icons/Sylvari.png");}
+.sprite-Asura {background-image: url("images/Races/Icons/Asura.png");}
+.sprite-Human {background-image: url("images/Races/Icons/Human.png");}
+.sprite-Norn {background-image: url("images/Races/Icons/Norn.png");}
+.sprite-Charr {background-image: url("images/Races/Icons/Charr.png");}
+.sprite-home {background-image: url("images/Icons/Homestead.png");}
+.sprite-account {background-image: url("images/Icons/Laurel.png");}
+.main-logo {
+    background-image: url("images/HomeLogo.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 body {
@@ -119,6 +126,7 @@ body {
   scrollbar-color: var(--dividerColor) transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'PT Serif', monospace ;
 }
 
 #root {
@@ -132,16 +140,12 @@ body {
 
 .page_content, header, footer {
   width: 75%;
-  height: 100%;
   overflow: hidden;
 }
 
-.page_content {display: flex;}
+.page_content {display: flex; height: 100%;}
 
-header {
-  height: 60px;
-}
-
+header {height: 60px;}
 footer { height: 150px;}
 
 
@@ -285,8 +289,8 @@ footer { height: 150px;}
     position: relative;
     cursor: default;
     img {
-        height: 48px;
-        width: 48px;
+        height: 54px;
+        width: 54px;
     }
     .count {
         position: absolute;
@@ -300,8 +304,8 @@ footer { height: 150px;}
 
 .icon {
     margin: 1.5px;
-    height: 48px;
-    width: 48px;
+    height: 54px;
+    width: 54px;
     border:1px solid #303030;
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -314,8 +318,7 @@ footer { height: 150px;}
     top:35%;
     flex-direction: column;
     padding: .5rem;
-    min-height: 300px;
-    width: 300px;
+    max-width: 300px;
     background-color: rgba(0, 0, 0, 0.836);
     color: white;
     border: 2px solid #ffffffc4;
@@ -396,5 +399,106 @@ footer { height: 150px;}
         margin-right: 1%;
     }
 }
+progress::-webkit-progress-bar {background: transparent;}
+progress::-webkit-progress-value {background: var(--progress);}
 
-/* */
+/* sprites */
+.sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build,
+.sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
+    background-image: url(images/sprites.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
+
+.sprite-characters {
+    background-position: -364px -148px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-equipment {
+    background-position: -238px -224px;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-inventory {
+    background-position: -304px -60px;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-build {
+    background-position: -334px 0;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-crafting {
+    background-position: -204px -190px;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-journal {
+    background-position: -300px -292px;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-map-completion {
+    background-position: -304px -90px;
+    height: 28px;
+    width: 28px;
+}
+
+.sprite-bank {
+    background-position: -364px -128px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-wallet {
+    background-position: -298px -347px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-copper {
+    background-position: -60px -389px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-silver {
+    background-position: -40px -489px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-gold {
+    background-position: -464px -180px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-achievements {
+    background-position: -364px -108px;
+    height: 18px;
+    width: 18px;
+}
+
+.sprite-achievement-big {
+    background-position: -304px -270px;
+    height: 20px;
+    width: 20px;
+}
+
+.sprite-achievement-icon {
+    background-position: -544px -270px;
+    height: 15px;
+    width: 15px;
+}
+

@@ -62,9 +62,10 @@ const Home = () => {
           </div>
           <span>API Permissions: </span>
           <div className="flex gap-2">
-            {account?.permissions?.map((permission) => (
+            {account?.permissions?.map((permission, index) => (<>
               <span key={permission}>{permission}</span>
-            ))}
+              {(account.permissions && index < account?.permissions?.length - 1) && <span>|</span>}
+            </>))}
           </div>
         </div>)}
       </div>

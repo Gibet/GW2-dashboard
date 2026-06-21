@@ -1,0 +1,1 @@
+export const demoCharacters: string[] = ["Demo Character"]

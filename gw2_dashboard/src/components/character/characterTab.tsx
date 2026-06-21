@@ -1,5 +1,5 @@
 import { useCharacter } from "../../contexts/characterContext";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { getCharacter } from "../../utils/services/characters";
 import { useEffect, useState } from "react";
 import { SecToHours } from "../../utils/functions";
@@ -8,6 +8,8 @@ import Build from "../build/buildView";
 import Equipment from "./equipment";
 import Journal from "./journal";
 import CustomButton from "../generic/button";
+import useAccountData from "../../hooks/useAccountData";
+import { demoCharacter } from "../../utils/demo/demoCharacter";
 
 const characterTabs = ["Main", "Equipment", "Inventory", "Build", "Journal"];
 type CharacterTabProps = {
@@ -15,14 +17,14 @@ type CharacterTabProps = {
 };
 
 const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
-  const queryClient = useQueryClient();
   const character = useCharacter();
   const [tab, setTab] = useState<string>("main");
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useAccountData({
     queryKey: ["character", name],
     queryFn: () => getCharacter(name),
     enabled: !!name,
+    demoData: demoCharacter
   });
 
   useEffect(() => {
@@ -51,8 +53,8 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
         ))}
       </div>
       <hr />
-      {isLoading && <div>Loading...</div>}
-      {isError && <div className="text-red-500">Error: {error?.message}</div>}
+      {isLoading && <div className="p-4">Loading Character...</div>}
+      {isError && <div className="p-4 text-red-500">Error: {error?.message}</div>}
       {character?.data && !isLoading && (
         <div className="flex flex-col items-center p-4 h-full overflow-auto">
           {tab === "Main" && (

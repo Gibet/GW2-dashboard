@@ -29,7 +29,7 @@
   --shadow : 0px 4px 4px 2px rgba(65, 65, 65, 0.05);
   --dividerColor: rgba(0, 0, 0, 0.15);
   
-  --accent : rgba(221, 149, 113, 0.9);
+  --accent : rgba(179, 51, 1, 0.9);
   --progress: rgba(75, 184, 65, 0.185);
 }
 
@@ -54,11 +54,12 @@
   --shadow : 0px 8px 8px 5px rgba(0, 0, 0, 0.05);
   --dividerColor: rgba(255, 255, 255, 0.1);
 
-  --accent : rgba(222, 186, 111, 0.9);
+  --accent : rgba(224, 164, 52, 0.9);
 }
 button {cursor: pointer;}
 [data-active=true] {
     font-weight: bold;
+    color: var(--accent)
 }
 
 .Heal {border: 1px solid var(--Heal);}
@@ -148,7 +149,13 @@ body {
 header {height: 60px;}
 footer { height: 150px;}
 
-
+input:disabled {
+    background-color: var(--disabled);
+}
+.homeButton {
+    border: 1px solid var(--dividerColor)
+}
+.homeButton:hover { color : var(--accent)}
 
 #gear {
     display: flex;

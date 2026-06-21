@@ -1,12 +1,12 @@
-export function SecToHours(value: number){
+export function SecToHours(value: number) {
 
-    let hours = Math.floor(value/3600);
-    let minutes = Math.floor(value%3600 / 60);
-    let seconds = value - (hours * 3600) - (minutes * 60);
+  let hours = Math.floor(value / 3600);
+  let minutes = Math.floor(value % 3600 / 60);
+  let seconds = value - (hours * 3600) - (minutes * 60);
 
-    let format = `${hours} hours ${minutes} minutes ${seconds} seconds`;
+  let format = `${hours.toLocaleString()} hours ${minutes} minutes ${seconds} seconds`;
 
-    return format;
+  return format;
 }
 
 export const chunk = <T,>(items: T[], size: number): T[][] => {

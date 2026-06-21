@@ -13,8 +13,11 @@ type AccountContextValue = {
   token?: string;
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
   permissions?: string[];
+  setPermissions: React.Dispatch<React.SetStateAction<string[]>>;
   data?: AccountType;
   setData: React.Dispatch<React.SetStateAction<AccountType | undefined>>;
+  isDemo: boolean;
+  setIsDemo: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const getStoredApiKey = () => {
@@ -45,6 +48,7 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | undefined>(getStoredApiKey);
   const [permissions, setPermissions] = useState<string[]>([]);
   const [data, setData] = useState<AccountType>();
+  const [isDemo, setIsDemo] = useState<boolean>(false)
 
   useEffect(() => {
     try {
@@ -63,8 +67,8 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [token]);
 
   const value = useMemo(
-    () => ({ token, setToken, permissions, data, setData }),
-    [token, setToken, permissions, data, setData],
+    () => ({ token, setToken, permissions, setPermissions, data, setData, isDemo, setIsDemo }),
+    [token, setToken, permissions, setPermissions, data, setData, isDemo, setIsDemo],
   );
 
   return (

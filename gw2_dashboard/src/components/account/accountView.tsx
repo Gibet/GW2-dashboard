@@ -15,8 +15,8 @@ const AccountView: React.FC<AccountType> = (props: AccountType) => {
       </div>
       <div className="col-span-1 flex flex-col">
         <span>Fractal level: {props.fractal_level}</span>
-        <span>Daily AP: {props.daily_ap} <span className="sprite-achievement-icon"></span></span>
-        <span>Monthly AP: {props.monthly_ap} <span className="sprite-achievement-icon"></span></span>
+        <span>Daily AP: {props.daily_ap.toLocaleString()} <span className="sprite-achievement-icon"></span></span>
+        <span>Monthly AP: {props.monthly_ap.toLocaleString()} <span className="sprite-achievement-icon"></span></span>
         <span>WvW Rank: {props.wvw_rank}</span>
       </div>
       {/* <ol>Guilds: {props.guilds.map((guild) => {return (

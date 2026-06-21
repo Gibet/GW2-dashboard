@@ -17,6 +17,8 @@ import { getAccountAchievements } from "../utils/services/account";
 import { useAccount } from "../contexts/accountContext";
 import type { AccountAchievementType } from "../utils/types/account";
 import CustomButton from "../components/generic/button";
+import useAccountData from "../hooks/useAccountData";
+import { demoAchievements } from "../utils/demo/demoAchievements";
 
 const Achievements = () => {
   const account = useAccount();
@@ -52,10 +54,11 @@ const Achievements = () => {
     isLoading: loadingAccAchmnts,
     isError: isErrorAccAchmnts,
     error: errorAccAchmnts,
-  } = useQuery({
+  } = useAccountData({
     queryKey: ["AccountAchievements"],
     queryFn: () => getAccountAchievements(),
     enabled: !!account?.token,
+    demoData: demoAchievements
   });
 
   const sortedCategories = useMemo(() => {

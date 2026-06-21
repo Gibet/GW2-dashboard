@@ -14,11 +14,11 @@ export interface CharacterType {
   crafting: CraftingType[]
   title: number
   backstory: string[]
-  wvw_ability: WvWAbilityType[]
+  wvw_abilities: WvWAbilityType[]
   equipment: EquipmentType[]
-  equipement_pvp: EquipmentPVPType
+  equipment_pvp: EquipmentPVPType
   recipes: number[]
-  training: TrainingType
+  training: TrainingType | []
   bags: BagType[]
   specializations: CharacterSpecializationsType
   skills: CharacterSkillsType
@@ -42,9 +42,9 @@ export interface EquipmentType {
   infusions?: number[]
   skin?: number
   stats?: StatType
-  binding: string[]
+  binding: string
   bound_to?: string
-  dyes?: number[]
+  dyes?: (number | null)[]
 }
 
 export interface EquipmentPVPType {

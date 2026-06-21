@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
 import { getAccountWallet, getCurrencies } from "../../utils/services/account";
 import type { CurrencyType } from "../../utils/types/account";
+import useAccountData from "../../hooks/useAccountData";
+import { demoWallet } from "../../utils/demo/demoWallet";
 
 const Wallet = () => {
   const {
@@ -9,9 +11,10 @@ const Wallet = () => {
     isLoading: loadingWallet,
     isError: isErrorWallet,
     error: errorWallet,
-  } = useQuery({
+  } = useAccountData({
     queryKey: ["wallet"],
     queryFn: getAccountWallet,
+    demoData: demoWallet
   });
 
   const currenciesIds = useMemo(() => {
@@ -60,7 +63,7 @@ const Wallet = () => {
   };
 
   return (
-    <div className="flex flex-col gap-1 h-full overflow-auto p-4">
+    <div className="flex flex-col gap-1 h-full overflow-auto p-4 text-sm">
       {(loadingWallet || loadingCurrencies) && <div>Loading Wallet...</div>}
       {(isErrorWallet || isErrorCurrencies) && (
         <>

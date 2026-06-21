@@ -20,6 +20,7 @@ const Header: React.FC = () => {
             }
           </button>
         </div>
+        {account?.isDemo && <span>Using Demo Account</span>}
         <div className="flex gap-2">
           <Link data-active={pathname === "/"} to={"/"} className="flex gap-1">
             <span className="sprite-home"></span>

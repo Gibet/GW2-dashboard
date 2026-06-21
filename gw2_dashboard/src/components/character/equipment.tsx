@@ -49,7 +49,6 @@ const Equipment = () => {
       )}
       {characterGear && !loadingGear && (
         <div className={`${character?.data?.race}`} >
-          <h2>Gear</h2>
           <div id="gear_view">
             <div id="main_gear" className="gap-2">
               <div id="armor_piece" className="flex flex-col items-center gap-2">

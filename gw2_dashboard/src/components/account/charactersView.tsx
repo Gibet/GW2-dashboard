@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { getAccountCharacters } from "../../utils/services/characters";
-import { useQuery } from "@tanstack/react-query";
 import CharacterTab from "../character/characterTab";
 import CustomButton from "../generic/button";
+import useAccountData from "../../hooks/useAccountData";
+import { demoCharacters } from "../../utils/demo/demoCharacters";
 
 const Characters = () => {
   const [characters, setCharacters] = useState<string[]>([]);
   const [name, setName] = useState<string>();
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useAccountData({
     queryKey: ["Characters"],
     queryFn: getAccountCharacters,
+    demoData: demoCharacters
   });
 
   useEffect(() => {

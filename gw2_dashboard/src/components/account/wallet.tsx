@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { getAccountWallet, getCurrencies } from "../../utils/services/account";
 import type { CurrencyType } from "../../utils/types/account";
 import useAccountData from "../../hooks/useAccountData";

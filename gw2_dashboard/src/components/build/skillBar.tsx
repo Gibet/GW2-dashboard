@@ -10,7 +10,7 @@ const SkillBar: React.FC<SkillBarProps> = ({ skills }) => {
   return (
     <div className="flex gap-2">
       {skills.map((skill) => (
-        <Skill skill={skill} />
+        <Skill key={skill.name} skill={skill} />
       ))}
     </div>
   );

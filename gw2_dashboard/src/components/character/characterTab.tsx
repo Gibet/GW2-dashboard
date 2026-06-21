@@ -1,5 +1,4 @@
 import { useCharacter } from "../../contexts/characterContext";
-import { useQueryClient } from "@tanstack/react-query";
 import { getCharacter } from "../../utils/services/characters";
 import { useEffect, useState } from "react";
 import { SecToHours } from "../../utils/functions";

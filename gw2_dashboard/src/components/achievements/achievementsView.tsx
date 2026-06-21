@@ -27,9 +27,9 @@ const AchievementsView: React.FC<AchievementsProps> = ({ ids, accountAchievement
         {isErrorAchmnts && (
           <div className="text-red-500">Error: {errorAchmnts?.message}</div>
         )}
-        {achievements?.map((achievement, index) => (
+        {achievements?.map((achievement) => (
           <div key={achievement.name}>
-            <Achievement achievement={achievement} status={accountAchievement && accountAchievement.find(
+            <Achievement achievement={achievement} status={accountAchievement?.find(
               (achiev) => achievement.id === achiev.id)
             }/>
           </div>

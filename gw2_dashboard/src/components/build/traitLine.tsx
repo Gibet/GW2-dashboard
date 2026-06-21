@@ -43,7 +43,7 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
           </div>
           <div className="trait_tier col-span-1 gap-1">
             {major_traits[index]?.map((major) => (
-              <Trait trait={major} type="major" />
+              <Trait key={major?.name} trait={major} type="major" />
             ))}
           </div>
         </>

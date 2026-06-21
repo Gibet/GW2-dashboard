@@ -34,11 +34,11 @@
 }
 
 [data-theme="light"] {
-  .Sylvari {background-image: url("images/Races/Art/Sylvari.jpg");}
-  .Asura {background-image: url("images/Races/Art/Asura.jpg");}
-  .Human {background-image: url("images/Races/Art/Human.jpg");}
-  .Norn {background-image: url("images/Races/Art/Norn.jpg");}
-  .Charr {background-image: url("images/Races/Art/Charr.jpg");}
+  .Sylvari {background-image: url("/images/Races/Art/Sylvari.jpg");}
+  .Asura {background-image: url("/images/Races/Art/Asura.jpg");}
+  .Human {background-image: url("/images/Races/Art/Human.jpg");}
+  .Norn {background-image: url("/images/Races/Art/Norn.jpg");}
+  .Charr {background-image: url("/images/Races/Art/Charr.jpg");}
 }
 
 [data-theme="dark"] {
@@ -104,15 +104,15 @@ button {cursor: pointer;}
     background-size: contain;
 }
 
-.sprite-Sylvari {background-image: url("images/Races/Icons/Sylvari.png");}
-.sprite-Asura {background-image: url("images/Races/Icons/Asura.png");}
-.sprite-Human {background-image: url("images/Races/Icons/Human.png");}
-.sprite-Norn {background-image: url("images/Races/Icons/Norn.png");}
-.sprite-Charr {background-image: url("images/Races/Icons/Charr.png");}
-.sprite-home {background-image: url("images/Icons/Homestead.png");}
-.sprite-account {background-image: url("images/Icons/Laurel.png");}
+.sprite-Sylvari {background-image: url("/images/Races/Icons/Sylvari.png");}
+.sprite-Asura {background-image: url("/images/Races/Icons/Asura.png");}
+.sprite-Human {background-image: url("/images/Races/Icons/Human.png");}
+.sprite-Norn {background-image: url("/images/Races/Icons/Norn.png");}
+.sprite-Charr {background-image: url("/images/Races/Icons/Charr.png");}
+.sprite-home {background-image: url("/images/Icons/Homestead.png");}
+.sprite-account {background-image: url("/images/Icons/Laurel.png");}
 .main-logo {
-    background-image: url("images/HomeLogo.png");
+    background-image: url("/images/HomeLogo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -233,7 +233,7 @@ input:disabled {
 }
 .minor img, .weapon_trait{clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #00000023;}
 .line_icon span {
-  background: url('images/trait-icon.png') no-repeat;
+  background: url('/images/trait-icon.png') no-repeat;
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -412,7 +412,7 @@ progress::-webkit-progress-value {background: var(--progress);}
 /* sprites */
 .sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build,
 .sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
-    background-image: url(images/sprites.png);
+    background-image: url(/images/sprites.png);
     background-repeat: no-repeat;
     display: inline-block;
     position: relative;

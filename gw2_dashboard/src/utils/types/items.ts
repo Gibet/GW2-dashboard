@@ -1,3 +1,4 @@
+import type { AttributeType } from './character';
 export interface ItemType {
   name: string
   description: string
@@ -69,6 +70,16 @@ export interface InventoryItemType {
   count: number
   binding?: string
   bound_to?: string
+  upgrades?: unknown[]
+  upgrade_slot_indices?: number[]
+  stats?: {
+    id: number
+    attributes: AttributeType
+  }
+  infusions?: number[]
+  charges?: number
+  dyes?: (number | null)[]
+  skin?: number
 }
 
 export interface InventorySlotType {

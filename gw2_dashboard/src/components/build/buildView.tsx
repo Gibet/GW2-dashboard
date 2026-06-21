@@ -4,6 +4,7 @@ import type { CharacterSpecializationsType, CharacterSkillsType } from "../../ut
 import { getSkills, getSpecializations, getTraits } from "../../utils/services/build";
 import SkillBar from "./skillBar";
 import TraitLine from "./traitLine";
+import CustomButton from "../generic/button";
 
 type Tab = keyof CharacterSpecializationsType & keyof CharacterSkillsType;
 type BuildProps = {
@@ -57,11 +58,11 @@ const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
   }, [traits, specs])
   
   return (
-    <div className="flex flex-col w-full items-start gap-4">
+    <div className="flex flex-col w-full items-start gap-4 h-full overflow-auto text-sm">
       <div className="flex gap-3 mb-3">
-        <button onClick={() => setTab('pve')}>PVE</button>
-        <button onClick={() => setTab('pvp')}>PVP</button>
-        <button onClick={() => setTab('wvw')}>WVW</button>
+        <CustomButton active={tab === "pve"} onClick={() => setTab('pve')}>PVE</CustomButton>
+        <CustomButton active={tab === "pvp"} onClick={() => setTab('pvp')}>PVP</CustomButton>
+        <CustomButton active={tab === "wvw"} onClick={() => setTab('wvw')}>WVW</CustomButton>
       </div>
       <div className="w-full">
         {loadingSkills && <div>Loading Skills...</div>}

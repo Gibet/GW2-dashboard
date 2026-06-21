@@ -53,7 +53,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
       <hr />
 
       {item.details && (
-        <div className="tooltip_stats">
+        <div className="tooltip_stats text-left">
           <div className="tooltip_stats_header">
             <div>Level: {item.level}</div>
             <div>
@@ -78,7 +78,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
         </div>
       )}
 
-      <div className="tooltip_description">
+      <div className="tooltip_description text-left">
         <div dangerouslySetInnerHTML={{ __html: item.description }} />
       </div>
       <br />

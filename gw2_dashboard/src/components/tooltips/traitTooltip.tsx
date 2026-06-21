@@ -27,7 +27,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
 
   return (
     <div
-      className="tool_tip text-xs"
+      className="tool_tip text-xs text-left"
       ref={ref}
       style={{
         position: "fixed",
@@ -42,7 +42,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
         <div>{trait.name}</div>
       </div>
       <div
-        className="tooltip_description"
+        className="tooltip_description text-left"
         dangerouslySetInnerHTML={{ __html: trait.description }}
       />
     </div>

@@ -16,13 +16,16 @@ import AchievementsView from "../components/achievements/achievementsView";
 import { getAccountAchievements } from "../utils/services/account";
 import { useAccount } from "../contexts/accountContext";
 import type { AccountAchievementType } from "../utils/types/account";
+import CustomButton from "../components/generic/button";
+import useAccountData from "../hooks/useAccountData";
+import { demoAchievements } from "../utils/demo/demoAchievements";
 
 const Achievements = () => {
   const account = useAccount();
-  const [group, setGroup] = useState<AchievementGroupType | undefined>(
+  const [currentGroup, setCurrentGroup] = useState<AchievementGroupType | undefined>(
     undefined,
   );
-  const [category, setCategory] = useState<AchievementCategoryType | undefined>(
+  const [currentCategory, setCurrentCategory] = useState<AchievementCategoryType | undefined>(
     undefined,
   );
 
@@ -51,10 +54,11 @@ const Achievements = () => {
     isLoading: loadingAccAchmnts,
     isError: isErrorAccAchmnts,
     error: errorAccAchmnts,
-  } = useQuery({
+  } = useAccountData({
     queryKey: ["AccountAchievements"],
     queryFn: () => getAccountAchievements(),
     enabled: !!account?.token,
+    demoData: demoAchievements
   });
 
   const sortedCategories = useMemo(() => {
@@ -137,53 +141,54 @@ const Achievements = () => {
   } */
 
   return (
-    <div className="grid grid-cols-4">
-      <div className="col-span-1 flex flex-col gap-1 border-r py-4 px-3 text-left">
-        {loadingGrps && <div>Loading...</div>}
-        {isErrorGrps && (
-          <div className="text-red-500">Error: {errorGrps?.message}</div>
-        )}
-        <Accordion>
-          {groups?.map((group) => (
-            <AccordionItem id={group.id} key={group.id}>
-              <AccordionTrigger onClick={() => setGroup(group)}>
-                {group.name}
-              </AccordionTrigger>
-              <AccordionContent>
-                {loadingCtgrs && <div>Loading...</div>}
-                {isErrorCtgrs && (
-                  <div className="text-red-500">
-                    Error: {errorCtgrs?.message}
-                  </div>
-                )}
-                {sortedCategories[group.id]?.map((category) => (
-                  <button
-                    key={category.name}
-                    onClick={() => setCategory(category)}
-                    className="flex items-center gap-2 text-left"
-                  >
-                    <img
-                      src={category.icon}
-                      alt={category.name}
-                      className="w-6 h-6"
-                    />
-                    <span>{category.name}</span>
-                  </button>
-                ))}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-      <div className="col-span-3">
-        {(group && category) && (
-          <AchievementsView
-            ids={category.achievements}
-            accountAchievement={  sortedAccountAchievementsById[group.id]?.categories[category.id] &&
-              sortedAccountAchievementsById[group.id].categories[category.id].achievements
-            }
-          />
-        )}
+    <div className="page_content h-full">
+      <div className="grid grid-cols-4 w-full">
+        <div className="col-span-1 w-full flex flex-col gap-1 border-r py-4 px-3 text-sm text-left h-full overflow-auto">
+          {loadingGrps && <div>Loading...</div>}
+          {isErrorGrps && (
+            <div className="text-red-500">Error: {errorGrps?.message}</div>
+          )}
+          <Accordion>
+            {groups?.map((group) => (
+              <AccordionItem id={group.id} key={group.id}>
+                <AccordionTrigger onClick={() => setCurrentGroup(group)}>
+                  {group.name}
+                </AccordionTrigger>
+                <AccordionContent>
+                  {loadingCtgrs && <div>Loading...</div>}
+                  {isErrorCtgrs && (
+                    <div className="text-red-500">
+                      Error: {errorCtgrs?.message}
+                    </div>
+                  )}
+                  {sortedCategories[group.id]?.map((category) => (
+                    <CustomButton
+                      active={ category.name === currentCategory?.name}
+                      key={category.name}
+                      onClick={() => setCurrentCategory(category)}
+                      className="flex items-center gap-2 text-left"
+                    >
+                      <img
+                        src={category.icon}
+                        alt={category.name}
+                        className="w-6 h-6"
+                      />
+                      <span>{category.name}</span>
+                    </CustomButton>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+        <div className="col-span-3 w-full flex flex-col gap-2 px-4 overflow-auto">
+          {(currentGroup && currentCategory) && (
+            <AchievementsView
+              ids={currentCategory.achievements}
+              accountAchievement={ sortedAccountAchievementsById[currentGroup.id]?.categories[currentCategory.id]?.achievements }
+            />
+          )}
+        </div>
       </div>
     </div>
   );

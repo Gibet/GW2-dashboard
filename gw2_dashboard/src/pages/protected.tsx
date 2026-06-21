@@ -4,7 +4,7 @@ import { useAccount } from "../contexts/accountContext";
 const ProtectedRoute = () => {
   const account = useAccount();
 
-  if (!account?.data) {
+  if (!account?.data && !account?.isDemo) {
     return <Navigate to="/" replace />;
   }
 

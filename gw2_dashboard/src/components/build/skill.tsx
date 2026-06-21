@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import type { SkillType, TraitType } from "../../utils/types/build";
+import React from "react";
+import type { SkillType } from "../../utils/types/build";
 import SkillTooltip from "../tooltips/skillTooltip";
 import useTooltip from "../../hooks/useTooltip";
 

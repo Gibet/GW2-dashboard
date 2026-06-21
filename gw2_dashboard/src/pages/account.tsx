@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAccount } from '../contexts/accountContext'
 import AccountView from '../components/account/accountView'
 import Characters from '../components/account/charactersView'

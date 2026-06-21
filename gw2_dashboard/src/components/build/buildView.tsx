@@ -1,5 +1,5 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useMemo, useState } from "react";
 import type { CharacterSpecializationsType, CharacterSkillsType } from "../../utils/types/character";
 import { getSkills, getSpecializations, getTraits } from "../../utils/services/build";
 import SkillBar from "./skillBar";
@@ -13,7 +13,6 @@ type BuildProps = {
 }
 
 const Build: React.FC<BuildProps> = ({ specializations, skills }) => {
-  const queryClient = useQueryClient()
   const [tab, setTab] = useState<Tab>("pve")
 
   const specsIds = useMemo(() => [...new Set(

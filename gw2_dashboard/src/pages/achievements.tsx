@@ -144,10 +144,11 @@ const Achievements = () => {
     <div className="page_content h-full">
       <div className="grid grid-cols-4 w-full">
         <div className="col-span-1 w-full flex flex-col gap-1 border-r py-4 px-3 text-sm text-left h-full overflow-auto">
-          {loadingGrps && <div>Loading...</div>}
-          {isErrorGrps && (
+          {(loadingGrps || loadingAccAchmnts) && <div>Loading...</div>}
+          {(isErrorGrps || isErrorAccAchmnts) && (<>
             <div className="text-red-500">Error: {errorGrps?.message}</div>
-          )}
+            <div className="text-red-500">Error: {errorAccAchmnts?.message}</div>
+          </>)}
           <Accordion>
             {groups?.map((group) => (
               <AccordionItem id={group.id} key={group.id}>

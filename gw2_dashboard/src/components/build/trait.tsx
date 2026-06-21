@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import type { TraitType } from "../../utils/types/build";
 import TraitTooltip from "../tooltips/traitTooltip";
 import useTooltip from "../../hooks/useTooltip";

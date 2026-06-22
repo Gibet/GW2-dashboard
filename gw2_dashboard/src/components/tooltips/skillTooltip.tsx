@@ -27,7 +27,7 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
 
   return (
     <div
-      className="tool_tip text-xs text-left"
+      className="tool_tip text-xs text-left gap-2"
       ref={ref}
       style={{
         position: "fixed",
@@ -37,7 +37,7 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
         pointerEvents: "none",
       }}
     >
-      <div className="tooltip_header mb-2">
+      <div className="tooltip_header">
         <img src={skill.icon} className="skill" alt="" />
         <div>{skill.name}</div>
       </div>
@@ -45,9 +45,9 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
         className="tooltip_description text-left"
         dangerouslySetInnerHTML={{ __html: skill.description }}
       />
-      {skill.facts && <div className="flex flex-col items-start gap-1 mt-2">
+      {skill.facts && <div className="flex flex-col items-start gap-1">
         {skill.facts.map((fact) => (
-          <div className="flex justify-start gap-1">
+          <div key={fact.text} className="flex justify-start gap-1">
             <img src={fact.icon} className="w-5 h-5" alt="" />
             <span>{fact.description || fact.text}</span>
             {fact.target && <span>{fact.target}</span>}

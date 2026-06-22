@@ -167,7 +167,7 @@ const Achievements = () => {
                       active={ category.name === currentCategory?.name}
                       key={category.name}
                       onClick={() => setCurrentCategory(category)}
-                      className="flex items-center gap-2 text-left"
+                      className="flex items-center text-xs gap-2 text-left"
                     >
                       <img
                         src={category.icon}

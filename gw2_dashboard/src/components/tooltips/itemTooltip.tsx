@@ -71,8 +71,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
           </div>
           {item.details.weight_class && <span>{item.details.weight_class} armor</span>}
           <div className="item_stats">
-            {item?.details?.infix_upgrade &&
-              item.details.infix_upgrade.attributes.map((attribute, index) => (
+            {item?.details?.infix_upgrade?.attributes.map((attribute, index) => (
                 <div key={index}>
                   {primaryAttributes[attribute.attribute]}: {attribute.modifier}
                 </div>
@@ -82,7 +81,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
       )}
 
       <div className="tooltip_description text-left">
-        <span className="text-nowrap">{item.type} - </span>
+        <span className="text-nowrap">{item.type} -&nbsp;</span>
         <span className="" dangerouslySetInnerHTML={{ __html: item.description }} />
       </div>
       <br />

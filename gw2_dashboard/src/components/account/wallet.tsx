@@ -44,7 +44,7 @@ const Wallet = () => {
   };
 
   return (
-    <div className="flex flex-col gap-1 h-full overflow-auto p-4 text-sm">
+    <div className="flex flex-col gap-1 h-full overflow-auto p-4 text-xs">
       {(loadingWallet || loadingCurrencies) && <div>Loading Wallet...</div>}
       {(isErrorWallet || isErrorCurrencies) && (
         <>

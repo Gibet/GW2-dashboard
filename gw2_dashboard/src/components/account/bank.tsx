@@ -20,7 +20,7 @@ const Bank = () => {
   })
 
   return (
-    <div className="flex flex-col items-center py-3 h-full overflow-auto text-sm">
+    <div className="flex flex-col items-center py-3 h-full overflow-auto text-xs">
       <div className="">
         {isLoading && <div>Loading...</div>}
         {isError && <div className="text-red-500">Error: {error?.message}</div>}

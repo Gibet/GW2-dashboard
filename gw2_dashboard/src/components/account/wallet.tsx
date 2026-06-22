@@ -4,6 +4,7 @@ import { getAccountWallet, getCurrencies } from "../../utils/services/account";
 import type { CurrencyType } from "../../utils/types/account";
 import useAccountData from "../../hooks/useAccountData";
 import { demoWallet } from "../../utils/demo/demoWallet";
+import { convertGoldFormat } from "../../utils/functions";
 
 const Wallet = () => {
   const {
@@ -38,28 +39,7 @@ const Wallet = () => {
       return <span>{value.toLocaleString()}</span>
     }
 
-    let gold = Math.floor(value / 10000);
-    let silver = Math.floor((value % 10000) / 100);
-    let copper = value - gold * 10000 - silver * 100;
-
-    let format = (
-      <span className="flex gap-1">
-        <span>
-          <span>{gold}</span>
-          <span className="sprite-gold"></span>
-        </span>
-        <span>
-          <span>{silver}</span>
-          <span className="sprite-silver"></span>
-        </span>
-        <span>
-          <span>{copper}</span>
-          <span className="sprite-copper"></span>
-        </span>
-      </span>
-      
-      )
-    return format
+    return convertGoldFormat(value)
   };
 
   return (

@@ -36,7 +36,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
 
   return (
     <div className="flex flex-col h-full overflow-hidden text-sm">
-      <div className="flex gap-3 p-4">
+      <div className="flex overflow-y-auto gap-3 p-4">
         {characterTabs.map((tabName) => (
           <CustomButton
             className="flex justify-center items-end gap-1"

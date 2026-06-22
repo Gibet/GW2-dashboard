@@ -1,6 +1,8 @@
 import type React from "react";
 import type { InventoryItemType, ItemType } from "../../utils/types/items";
 import { useLayoutEffect, useRef, useState } from "react";
+import { convertGoldFormat } from "../../utils/functions";
+import { primaryAttributes } from "../../utils/variables";
 
 type ItemProps = {
   item: ItemType;
@@ -27,7 +29,8 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
   }, [x, y]);
 
   return (
-    <div className="tool_tip text-xs"
+    <div
+      className="tool_tip text-xs gap-2"
       ref={ref}
       style={{
         position: "fixed",
@@ -37,7 +40,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
         pointerEvents: "none",
       }}
     >
-      <div className="tooltip_header">
+      <div className={`tooltip_header text-left tooltip-${item.rarity}`}>
         <img src={item.icon} className={item.rarity} alt="" />
         <div>
           {item.details && (
@@ -50,28 +53,27 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
           {item.name}
         </div>
       </div>
-      <hr />
 
       {item.details && (
-        <div className="tooltip_stats text-left">
-          <div className="tooltip_stats_header">
-            <div>Level: {item.level}</div>
-            <div>
+        <div className="tooltip_stats flex flex-col gap-2 text-left">
+          <div className="tooltip_stats_header flex justify-between gap-2">
+            <div className="text-nowrap">{!!item.level && `Level: ${item.level}`}</div>
+            <div className="">
               {!!item.details.defense && (
                 <span>{item.details.defense} armor</span>
               )}
               {item.details.min_power && (
-                <span>
+                <span className="text-nowrap">
                   {item.details.min_power}-{item.details.max_power} damage
                 </span>
               )}
             </div>
           </div>
+          {item.details.weight_class && <span>{item.details.weight_class} armor</span>}
           <div className="item_stats">
-            {item?.details?.infix_upgrade &&
-              item.details.infix_upgrade.attributes.map((attribute, index) => (
+            {item?.details?.infix_upgrade?.attributes.map((attribute, index) => (
                 <div key={index}>
-                  {attribute.attribute}: {attribute.modifier}
+                  {primaryAttributes[attribute.attribute]}: {attribute.modifier}
                 </div>
               ))}
           </div>
@@ -79,15 +81,18 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
       )}
 
       <div className="tooltip_description text-left">
-        <div dangerouslySetInnerHTML={{ __html: item.description }} />
+        <span className="text-nowrap">{item.type} -&nbsp;</span>
+        <span className="" dangerouslySetInnerHTML={{ __html: item.description }} />
       </div>
       <br />
 
-      <div className="tooltip_label">
-        <div>
-          <div>{item.rarity}</div> - <div>{item.type}</div>
+      {!!item.vendor_value && (
+        <div className="flex items-center gap-1">
+          <span>Value: </span>
+          <span>{convertGoldFormat(item.vendor_value * (slot?.count || 1))}</span>
         </div>
-        <>
+      )}
+      <div className="text-left">
           {slot && (
             <>
               {slot.binding && (
@@ -98,7 +103,6 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
               )}
             </>
           )}
-        </>
       </div>
     </div>
   );

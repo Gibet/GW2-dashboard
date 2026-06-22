@@ -21,7 +21,7 @@ const Characters = () => {
 
   return (
     <div className="grid grid-cols-6 h-full overflow-hidden text-sm">
-      <div className="col-span-1 flex flex-col gap-1 border-r py-4 h-full overflow-auto">
+      <div className="col-span-1 text-xs flex flex-col gap-1 border-r py-4 h-full overflow-auto">
         {isLoading && <div>Loading</div>}
         {isError && <div className="text-red-500">Error: {error?.message}</div>}
         {characters?.map((character) => (

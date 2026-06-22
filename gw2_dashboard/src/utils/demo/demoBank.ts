@@ -303,7 +303,7 @@ export const demoBank: (InventoryItemType | null)[] = [
         "id": 92137,
         "count": 1,
         "binding": "Character",
-        "bound_to": "Ebreen",
+        "bound_to": "Demo Character",
         "stats": {
             "id": 1539,
             "attributes": {
@@ -334,7 +334,7 @@ export const demoBank: (InventoryItemType | null)[] = [
             1
         ],
         "binding": "Character",
-        "bound_to": "Ebreen"
+        "bound_to": "Demo Character"
     },
     {
         "id": 41824,
@@ -380,7 +380,7 @@ export const demoBank: (InventoryItemType | null)[] = [
         "id": 96883,
         "count": 1,
         "binding": "Character",
-        "bound_to": "Taelphe",
+        "bound_to": "Demo Character",
         "stats": {
             "id": 1717,
             "attributes": {
@@ -438,7 +438,7 @@ export const demoBank: (InventoryItemType | null)[] = [
         "id": 79626,
         "count": 1,
         "binding": "Character",
-        "bound_to": "Siohna"
+        "bound_to": "Demo Character"
     },
     {
         "id": 66220,
@@ -730,7 +730,7 @@ export const demoBank: (InventoryItemType | null)[] = [
             6
         ],
         "binding": "Character",
-        "bound_to": "Taelphe"
+        "bound_to": "Demo Character"
     },
     {
         "id": 92692,

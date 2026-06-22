@@ -60,6 +60,7 @@ export interface FactType {
    duration?: number
    percent?: number
    field_type?: string
+   distance?: number
 }
 
 export interface TraitFactType {

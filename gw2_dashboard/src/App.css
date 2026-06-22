@@ -318,6 +318,11 @@ input:disabled {
 }
 
 .tool_tip {
+    background-image: url("/images/tooltip_background.webp");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-repeat: repeat;
+    font-family: Arial, sans-serif;
     position: fixed;
     display: flex;
     z-index: 9;
@@ -326,7 +331,6 @@ input:disabled {
     flex-direction: column;
     padding: .5rem;
     max-width: 300px;
-    background-color: rgba(0, 0, 0, 0.836);
     color: white;
     border: 2px solid #ffffffc4;
     img {
@@ -356,10 +360,6 @@ input:disabled {
     border-bottom: lightgrey;
 }
 
-.tooltip_stats_header, .item_stats {
-    margin-bottom: 15px;
-}
-
 .item_stats {
     display: flex;
     flex-direction: column;
@@ -367,14 +367,6 @@ input:disabled {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-}
-
-.tooltip_description {
-    flex: 1 1 auto;
-    div {
-        display: flex;
-        flex-direction: column;
     }
 }
 
@@ -410,7 +402,7 @@ progress::-webkit-progress-bar {background: transparent;}
 progress::-webkit-progress-value {background: var(--progress);}
 
 /* sprites */
-.sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build,
+.sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build, .sprite-Power, .sprite-Toughness, .sprite-Vitality, .sprite-Precision, .sprite-Ferocity, .sprite-ConditionDamage, .sprite-ConditionDuration, .sprite-AgonyResistance, .sprite-Concentration, .sprite-Expertise, .sprite-Armor, .sprite-Health, .sprite-CritChance, .sprite-CritDamage, .sprite-HealingPower, .sprite-BoonDuration,
 .sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
     background-image: url(/images/sprites.png);
     background-repeat: no-repeat;
@@ -509,3 +501,98 @@ progress::-webkit-progress-value {background: var(--progress);}
     width: 15px;
 }
 
+.sprite-Power {
+    background-position: -34px -190px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Toughness {
+    background-position: -136px -190px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Vitality {
+    background-position: -170px -190px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Precision {
+    background-position: -68px -190px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Ferocity {
+    background-position: -202px -68px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-ConditionDamage {
+    background-position: -68px -156px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Expertise {
+    background-position: -202px -34px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Concentration {
+    background-position: -34px -156px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-AgonyResistance {
+    background-position: -156px -80px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Armor {
+    background-position: -156px -114px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-Health {
+    background-position: -202px -136px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-CritChance {
+    background-position: -136px -156px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-CritDamage {
+    background-position: -202px 0;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-HealingPower {
+    background-position: -202px -102px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-ConditionDuration {
+    background-position: -102px -156px;
+    height: 32px;
+    width: 32px;
+}
+
+.sprite-BoonDuration {
+    background-position: 0 -156px;
+    height: 32px;
+    width: 32px;
+}

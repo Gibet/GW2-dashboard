@@ -56,8 +56,8 @@ const Wallet = () => {
         currencies &&
         wallet.map((currency, index) => (
           <Currency
+            key={currency.id}
             currency={currencies[index]}
-            wallet={currency}
             amount={convertCurrencyFormat(currencies[index], currency.value)}
           />
         ))}

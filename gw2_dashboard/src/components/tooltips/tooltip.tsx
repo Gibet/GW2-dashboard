@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import type { TraitType } from "../../utils/types/build";
 
 type TooltipProps = {
   name: string

@@ -5,11 +5,10 @@ import Tooltip from "../tooltips/tooltip";
 
 type CurrencyProps = {
   currency: CurrencyType;
-  wallet: WalletType;
   amount: React.ReactNode;
 };
 
-const Currency: React.FC<CurrencyProps> = ({ currency, wallet, amount }) => {
+const Currency: React.FC<CurrencyProps> = ({ currency, amount }) => {
   const tooltip = useTooltip();
 
   return (

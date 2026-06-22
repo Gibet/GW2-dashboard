@@ -1,5 +1,5 @@
 import type React from "react";
-import type { CurrencyType, WalletType } from "../../utils/types/account";
+import type { CurrencyType } from "../../utils/types/account";
 import useTooltip from "../../hooks/useTooltip";
 import Tooltip from "../tooltips/tooltip";
 

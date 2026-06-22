@@ -63,7 +63,7 @@ const Equipment = () => {
   const characterStats = useMemo(() => {
     if (!character?.data || !characterGear) return {}
 
-    return parseAttributes(characterGear, character?.data?.level)
+    return parseAttributes(characterGear, character?.data?.level, character.data.profession)
   }, [characterGear, character])
 
   return (

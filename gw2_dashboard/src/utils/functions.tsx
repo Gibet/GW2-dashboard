@@ -1,5 +1,12 @@
 import type { AttributeType, GearSetType, GearType } from "./types/character";
-import { increasePatterns, primaryAttributes } from "./variables";
+import {
+  primaryStatsIncreasePatterns,
+  primaryAttributes,
+  healthIncreasePatterns,
+  HighProfessions,
+  LowProfessions,
+  MediumProfessions,
+} from "./variables";
 
 export function SecToHours(value: number) {
   let hours = Math.floor(value / 3600);
@@ -49,7 +56,7 @@ export const chunk = <T,>(items: T[], size: number): T[][] => {
 };
 
 // get the base value of a primary attribute based on the character level
-export const getBaseValue = (level: number) => {
+export const getBaseStat = (level: number) => {
   // base value of a primary attribute at level 1
   let baseValue = 37;
 
@@ -61,7 +68,7 @@ export const getBaseValue = (level: number) => {
       continue;
     }
 
-    let increasePattern = increasePatterns.find((pattern) => {
+    let increasePattern = primaryStatsIncreasePatterns.find((pattern) => {
       return i <= pattern.maxLevel;
     });
 
@@ -70,7 +77,25 @@ export const getBaseValue = (level: number) => {
   return baseValue;
 };
 
-export const parseAttributes = (gear: GearSetType, level: number): AttributeType => {
+export const getBaseHealth = (level: number, profession: string) => {
+  let baseValue = 0;
+
+  for (let i = 1; i <= level; i++) {
+    let increasePattern = healthIncreasePatterns.find((pattern) => {
+      return i <= pattern.maxLevel;
+    });
+    if (HighProfessions.has(profession) && increasePattern) baseValue += increasePattern?.high
+    if (MediumProfessions.has(profession) && increasePattern) baseValue += increasePattern?.medium
+    if (LowProfessions.has(profession) && increasePattern) baseValue += increasePattern?.low
+  }
+  return baseValue
+};
+
+export const parseAttributes = (
+  gear: GearSetType,
+  level: number,
+  profession: string
+): AttributeType => {
   let aquaticPieces = new Set<string>([
     "HelmAquatic",
     "WeaponAquaticA",
@@ -85,10 +110,12 @@ export const parseAttributes = (gear: GearSetType, level: number): AttributeType
   }, {} as AttributeType);
 
   // set base values for the main primary stats
-  attributesTotal.Power = getBaseValue(level);
-  attributesTotal.Toughness = getBaseValue(level);
-  attributesTotal.Vitality = getBaseValue(level);
-  attributesTotal.Precision = getBaseValue(level);
+  attributesTotal.Power = getBaseStat(level);
+  attributesTotal.Toughness = getBaseStat(level);
+  attributesTotal.Vitality = getBaseStat(level);
+  attributesTotal.Precision = getBaseStat(level);
+  attributesTotal.Health = getBaseHealth(level, profession)
+  attributesTotal.Armor = attributesTotal.Toughness;
 
   // parse the attributes of the gear set
   const gearEntries = Object.entries(gear) as [
@@ -104,6 +131,12 @@ export const parseAttributes = (gear: GearSetType, level: number): AttributeType
       item?.item.details?.infix_upgrade
     ) {
       const infix_attributes = item?.item?.details?.infix_upgrade.attributes;
+      const armor = item?.item?.details?.defense;
+
+      if (armor) {
+        attributesTotal.Armor += armor;
+      }
+
       if (infix_attributes) {
         infix_attributes.forEach((attr) => {
           const key = attr.attribute as keyof AttributeType;
@@ -112,6 +145,11 @@ export const parseAttributes = (gear: GearSetType, level: number): AttributeType
       }
     }
   }
+  attributesTotal.Health += (attributesTotal.Vitality * 10)
+  attributesTotal.CritChance = 5 + ((attributesTotal.Precision - 1000 ) / 21)
+  attributesTotal.Ferocity = 150 + ((attributesTotal.CritDamage || 0) / 15)
+  attributesTotal.Concentration = (attributesTotal.BoonDuration || 0) / 15
+  attributesTotal.Expertise = (attributesTotal.ConditionDuration || 0) / 15
 
   return attributesTotal;
 };

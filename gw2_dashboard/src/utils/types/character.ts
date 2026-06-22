@@ -71,6 +71,11 @@ export interface AttributeType {
   BoonDuration?: number
   AgonyResistance?: number
   CritChance?: number
+  Ferocity?: number
+  Expertise?: number
+  Defense?: number
+  Health?: number
+  Armor?: number
 }
 
 export interface TrainingType {

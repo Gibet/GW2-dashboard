@@ -70,6 +70,7 @@ export interface AttributeType {
   ConditionDuration?: number
   Concentration?: number
   BoonDuration?: number
+  AgonyResistance?: number
 }
 
 export interface TrainingType {

@@ -4,6 +4,8 @@ import { getAccountWallet, getCurrencies } from "../../utils/services/account";
 import type { CurrencyType } from "../../utils/types/account";
 import useAccountData from "../../hooks/useAccountData";
 import { demoWallet } from "../../utils/demo/demoWallet";
+import { convertGoldFormat } from "../../utils/functions";
+import Currency from "./currency";
 
 const Wallet = () => {
   const {
@@ -14,7 +16,7 @@ const Wallet = () => {
   } = useAccountData({
     queryKey: ["wallet"],
     queryFn: getAccountWallet,
-    demoData: demoWallet
+    demoData: demoWallet,
   });
 
   const currenciesIds = useMemo(() => {
@@ -35,31 +37,10 @@ const Wallet = () => {
 
   const convertCurrencyFormat = (currency: CurrencyType, value: number) => {
     if (currency.name !== "Coin") {
-      return <span>{value.toLocaleString()}</span>
+      return <span>{value.toLocaleString()}</span>;
     }
 
-    let gold = Math.floor(value / 10000);
-    let silver = Math.floor((value % 10000) / 100);
-    let copper = value - gold * 10000 - silver * 100;
-
-    let format = (
-      <span className="flex gap-1">
-        <span>
-          <span>{gold}</span>
-          <span className="sprite-gold"></span>
-        </span>
-        <span>
-          <span>{silver}</span>
-          <span className="sprite-silver"></span>
-        </span>
-        <span>
-          <span>{copper}</span>
-          <span className="sprite-copper"></span>
-        </span>
-      </span>
-      
-      )
-    return format
+    return convertGoldFormat(value);
   };
 
   return (
@@ -74,13 +55,11 @@ const Wallet = () => {
       {wallet &&
         currencies &&
         wallet.map((currency, index) => (
-          <div key={currency.id} className="w-full flex justify-between">
-            <span>{currencies[index].name}</span>
-            <div className="flex gap-3">
-              <span className="text-sm">{convertCurrencyFormat(currencies[index], currency.value)}</span>
-              <img src={currencies[index].icon} alt="" className="w-6 h-6" />
-            </div>
-          </div>
+          <Currency
+            currency={currencies[index]}
+            wallet={currency}
+            amount={convertCurrencyFormat(currencies[index], currency.value)}
+          />
         ))}
     </div>
   );

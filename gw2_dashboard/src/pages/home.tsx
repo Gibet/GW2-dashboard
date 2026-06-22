@@ -86,8 +86,8 @@ const Home = () => {
                 Welcome {account.data.name}
               </div>
             </div>
-            <span>API Permissions: </span>
-            <div className="flex gap-2">
+            <span className="text-sm">API Permissions: </span>
+            <div className="flex text-xs flex-wrap gap-2">
               {account?.permissions?.map((permission, index) => (
                 <>
                   <span key={permission}>{permission}</span>

@@ -52,6 +52,15 @@ export interface FactType {
    text: string
    icon: string
    type: string
+   description?: string
+   target?: string
+   value?: number
+   dmg_multiplier?: number
+   hit_count?: number
+   duration?: number
+   percent?: number
+   field_type?: string
+   distance?: number
 }
 
 export interface TraitFactType {

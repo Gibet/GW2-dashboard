@@ -1,6 +1,6 @@
 export const STORAGE_KEY = "GW2API";
 
-export const primaryAttributes = {
+export const primaryAttributes: Record<string, string> = {
     Power: "Power",
     Precision: "Precision",
     Toughness: "Toughness",

@@ -313,7 +313,7 @@ export const demoCharacter: CharacterType = {
       ],
       "skin": 4320,
       "binding": "Character",
-      "bound_to": "Taelphe"
+      "bound_to": "Demo Character"
     },
     {
       "id": 72239,
@@ -393,7 +393,7 @@ export const demoCharacter: CharacterType = {
       "id": 100849,
       "slot": "Relic",
       "binding": "Character",
-      "bound_to": "Taelphe"
+      "bound_to": "Demo Character"
     }
   ],
   "recipes": [
@@ -612,25 +612,25 @@ export const demoCharacter: CharacterType = {
           "id": 79744,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 100947,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 100693,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 100148,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 100795,
@@ -683,7 +683,7 @@ export const demoCharacter: CharacterType = {
           "id": 100368,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 67836,
@@ -902,13 +902,13 @@ export const demoCharacter: CharacterType = {
           "id": 76848,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 74623,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 86804,
@@ -924,7 +924,7 @@ export const demoCharacter: CharacterType = {
           "id": 76072,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 77656,
@@ -974,7 +974,7 @@ export const demoCharacter: CharacterType = {
           "id": 79527,
           "count": 1,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 77604,
@@ -1032,7 +1032,7 @@ export const demoCharacter: CharacterType = {
           "id": 82400,
           "count": 13,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 19684,
@@ -1194,7 +1194,7 @@ export const demoCharacter: CharacterType = {
           "id": 86371,
           "count": 14,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 86069,
@@ -1323,7 +1323,7 @@ export const demoCharacter: CharacterType = {
           "id": 43418,
           "count": 16,
           "binding": "Character",
-          "bound_to": "Taelphe"
+          "bound_to": "Demo Character"
         },
         {
           "id": 43362,

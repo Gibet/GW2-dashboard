@@ -27,7 +27,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
 
   return (
     <div
-      className="tool_tip text-xs text-left"
+      className="tool_tip text-xs text-left gap-2"
       ref={ref}
       style={{
         position: "fixed",
@@ -45,9 +45,9 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
         className="tooltip_description text-left"
         dangerouslySetInnerHTML={{ __html: trait.description }}
       />
-      {trait.facts && <div className="flex flex-col items-start gap-1 mt-2">
+      {trait.facts && <div className="flex flex-col items-start gap-1">
         {trait.facts.map((fact) => (
-          <div className="flex justify-start gap-1">
+          <div key={fact.text} className="flex justify-start gap-1">
             <img src={fact.icon} className="w-5 h-5" alt="" />
             <span>{fact.description || fact.text}{fact.text && ":"}</span>
             {fact.target && <span>{fact.target}</span>}

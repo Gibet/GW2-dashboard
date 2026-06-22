@@ -22,7 +22,7 @@ const Currency: React.FC<CurrencyProps> = ({ currency, wallet, amount }) => {
     >
       <span>{currency.name}</span>
       <div className="flex gap-3">
-        <span className="text-sm">{amount}</span>
+        <span className="text-xs">{amount}</span>
         <img src={currency.icon} alt="" className="w-6 h-6" />
       </div>
       {tooltip.focused && (

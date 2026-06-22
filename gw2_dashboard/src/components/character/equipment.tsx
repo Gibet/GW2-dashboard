@@ -6,6 +6,7 @@ import { getItems } from "../../utils/services/items";
 import Item from "../items/item";
 import type { InfixAttributeType } from "../../utils/types/items";
 import StatPanel from "./statPanel";
+import { parseAttributes } from "../../utils/functions";
 
 const Equipment = () => {
   const character = useCharacter();
@@ -60,7 +61,9 @@ const Equipment = () => {
   }, [character?.data?.equipment, gear]);
 
   const characterStats = useMemo(() => {
+    if (!character?.data || !characterGear) return {}
 
+    return parseAttributes(characterGear, character?.data?.level)
   }, [characterGear, character])
 
   return (
@@ -105,7 +108,7 @@ const Equipment = () => {
               </div>
             </div>
             <div id="secondary_gear">
-              <StatPanel />
+              <StatPanel stats={characterStats}/>
               <div id="trinkets" className="items-center gap-2">
                 <span>Trinkets</span>
                 <div className="flex flex-col items-center">

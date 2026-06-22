@@ -1,5 +1,5 @@
-import type { GearSetType } from "./types/character";
-import { increasePatterns } from "./variables";
+import type { AttributeType, GearSetType, GearType } from "./types/character";
+import { increasePatterns, primaryAttributes } from "./variables";
 
 export function SecToHours(value: number) {
   let hours = Math.floor(value / 3600);
@@ -70,48 +70,48 @@ export const getBaseValue = (level: number) => {
   return baseValue;
 };
 
-export const parseAttributes = (gear: GearSetType, level: number) => {
-  let equipment = {};
-  let aquaticPieces = ["HelmAquatic", "WeaponAquaticA", "WeaponAquaticB"];
-  let secondaryPieces = ["WeaponB1", "WeaponB2"];
+export const parseAttributes = (gear: GearSetType, level: number): AttributeType => {
+  let aquaticPieces = new Set<string>([
+    "HelmAquatic",
+    "WeaponAquaticA",
+    "WeaponAquaticB",
+  ]);
+  let secondaryPieces = new Set<string>(["WeaponB1", "WeaponB2"]);
 
-  let attributes = {
-    Power: getBaseValue(level),
-    Toughness: getBaseValue(level),
-    Vitality: getBaseValue(level),
-    Precision: getBaseValue(level),
-    CritDamage: 0,
-    ConditionDamage: 0,
-    ConditionDuration: 0,
-    Concentration: 0,
-    HealingPower: 0,
-  };
+  // zero-init every attribute key we care about (using primaryAttributes from variables.ts)
+  const attributesTotal = Object.keys(primaryAttributes).reduce((acc, k) => {
+    acc[k as keyof AttributeType] = 0;
+    return acc;
+  }, {} as AttributeType);
+
+  // set base values for the main primary stats
+  attributesTotal.Power = getBaseValue(level);
+  attributesTotal.Toughness = getBaseValue(level);
+  attributesTotal.Vitality = getBaseValue(level);
+  attributesTotal.Precision = getBaseValue(level);
+
   // parse the attributes of the gear set
-  /* items.forEach(item => {
-        if (item.stats?.attributes) {
-            
-            Object.keys(item.stats.attributes).forEach(key => {
-                equipment[item.slot] = item.stats.attributes;
-            })
-        }
-        else if(info[item.slot]){
-            if(info[item.slot].details?.infix_upgrade?.attributes){
-                let piece = {} 
-                info[item.slot].details.infix_upgrade.attributes.forEach(attribute => {
-                    piece[attribute.attribute] = attribute.modifier
-                })
-                equipment[item.slot] = piece
-            }
-        }
-    });
-    
-    Object.keys(equipment).forEach(key => {
-        if(!aquaticPieces.includes(key) && !secondaryPieces.includes(key)){
-            Object.keys(equipment[key]).forEach(attribute => {
-                attributes[attribute] += equipment[key][attribute]
-            })
-        }
-    }) */
+  const gearEntries = Object.entries(gear) as [
+    keyof GearSetType,
+    GearType | undefined,
+  ][];
+  for (const [slot, item] of gearEntries) {
+    if (!Object.prototype.hasOwnProperty.call(gear, slot)) continue;
 
-  return attributes;
+    if (
+      !aquaticPieces.has(slot) &&
+      !secondaryPieces.has(slot) &&
+      item?.item.details?.infix_upgrade
+    ) {
+      const infix_attributes = item?.item?.details?.infix_upgrade.attributes;
+      if (infix_attributes) {
+        infix_attributes.forEach((attr) => {
+          const key = attr.attribute as keyof AttributeType;
+          attributesTotal[key] = (attributesTotal[key] ?? 0) + attr.modifier;
+        });
+      }
+    }
+  }
+
+  return attributesTotal;
 };

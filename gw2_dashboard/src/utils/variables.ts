@@ -12,6 +12,7 @@ export const primaryAttributes: Record<string, string> = {
     ConditionDuration: "Expertise",
     Concentration: "Concentration",
     BoonDuration: "Concentration",
+    AgonyResistance: "Agony Resistance"
 }
 
 // Stats increase per level for each range for stats calculation

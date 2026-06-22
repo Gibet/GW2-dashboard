@@ -65,12 +65,12 @@ export interface AttributeType {
   Vitality?: number
   CritDamage?: number
   HealingPower?: number
-  Healing?: number
   ConditionDamage?: number
   ConditionDuration?: number
   Concentration?: number
   BoonDuration?: number
   AgonyResistance?: number
+  CritChance?: number
 }
 
 export interface TrainingType {

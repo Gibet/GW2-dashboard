@@ -30,6 +30,7 @@
   --dividerColor: rgba(0, 0, 0, 0.15);
   
   --accent : rgba(179, 51, 1, 0.9);
+  --accentHover : rgba(179, 51, 1, 0.05);
   --progress: rgba(75, 184, 65, 0.185);
 }
 
@@ -55,11 +56,15 @@
   --dividerColor: rgba(255, 255, 255, 0.1);
 
   --accent : rgba(224, 164, 52, 0.9);
+  --accentHover : rgba(224, 164, 52, 0.05);
 }
 button {cursor: pointer;}
 [data-active=true] {
     font-weight: bold;
     color: var(--accent)
+}
+[data-hover=true] {
+    background-color: var(--accentHover);
 }
 
 .Heal {border: 1px solid var(--Heal);}

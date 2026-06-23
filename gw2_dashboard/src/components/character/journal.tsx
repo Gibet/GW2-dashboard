@@ -14,6 +14,8 @@ import { useMemo } from "react";
 import { getCharacterQuests } from "../../utils/services/characters";
 import useAccountData from "../../hooks/useAccountData";
 import type { QuestType, SeasonType, StoryType } from "../../utils/types/story";
+import Backstory from "../story/backtory";
+import { demoStory } from "../../utils/demo/demoStory";
 
 const Journal = () => {
   const character = useCharacter();
@@ -47,7 +49,7 @@ const Journal = () => {
     queryKey: ["CharacterQuests", character?.data?.name!],
     queryFn: () => getCharacterQuests(character?.data?.name!),
     enabled: !!character,
-    demoData: [],
+    demoData: demoStory,
   });
 
   const {
@@ -154,11 +156,7 @@ const Journal = () => {
             {answers && (
               <div className="flex flex-col gap-2 text-left py-3">
                 {answers.map((answer) => (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: answer.journal.replace(/<br>/, ""),
-                    }}
-                  />
+                  <Backstory answer={answer} />
                 ))}
               </div>
             )}

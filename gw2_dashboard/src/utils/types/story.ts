@@ -20,3 +20,28 @@ export interface GoalType {
   active: string
   complete: string
 }
+
+export interface SeasonType {
+  id: string
+  name: string
+  order: number
+  stories: number[]
+}
+
+export interface StoryType {
+  id: number
+  season: string
+  name: string
+  description: string
+  timeline: string
+  level: string
+  order: number
+  chapters: ChapterType[]
+  races?: string[]
+  flags?: string[]
+  quests?: QuestType[]
+}
+
+export interface ChapterType {
+  name: string
+}

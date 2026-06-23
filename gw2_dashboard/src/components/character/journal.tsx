@@ -214,7 +214,7 @@ const Journal = () => {
                                   <div className="text-xs text-left flex flex-col">
                                     <div className="py-2 flex flex-col gap-1">
                                       <h3 className="font-extrabold">
-                                        {quest.level} - {quest.name}
+                                        {quest.name}
                                       </h3>
                                       <div>
                                         {quest.goals.map((goal) => (

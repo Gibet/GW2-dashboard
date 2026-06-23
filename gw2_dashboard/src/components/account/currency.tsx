@@ -13,15 +13,16 @@ const Currency: React.FC<CurrencyProps> = ({ currency, amount }) => {
 
   return (
     <div
+      data-hover={tooltip.focused}
       onMouseEnter={(e) => tooltip.handleMouseEnter(e)}
       onMouseMove={(e) => tooltip.handleMouseMove(e)}
       onMouseLeave={tooltip.handleMouseExit}
       key={currency.id}
-      className="w-full flex justify-between"
+      className="w-full flex justify-between items-center p-1"
     >
       <span>{currency.name}</span>
       <div className="flex gap-3">
-        <span className="text-xs">{amount}</span>
+        <span className="text-xs flex justify-center">{amount}</span>
         <img src={currency.icon} alt="" className="w-6 h-6" />
       </div>
       {tooltip.focused && (

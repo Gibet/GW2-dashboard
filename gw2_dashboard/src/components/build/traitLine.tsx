@@ -22,14 +22,13 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
   return (
     <div
       key={specialization.id}
-      title={specialization.name}
       className="traitline w-full overflow-hidden grid grid-cols-10"
       style={{
         backgroundImage: `url(${specialization.background})`,
       }}
     >
       <div className="col-span-4 h-full flex justify-center items-center line_icon">
-        <span></span>
+        <span title={specialization.name}></span>
       </div>
       <span className="weapon_proficiency">
         {specialization.weapon_trait && (

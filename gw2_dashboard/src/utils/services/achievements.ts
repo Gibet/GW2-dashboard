@@ -30,11 +30,11 @@ export const getAchievementCategories = async (): Promise<AchievementCategoryTyp
   const ids = await getAchievementCategoryIds()
   const batches = chunk(ids, 200)
 
-  const responses = await Promise.all(
+  const queries = await Promise.all(
     batches.map(batch =>
       API.get<AchievementCategoryType[]>("achievements/categories", { params: { ids: batch.join(",") } })
     )
   )
 
-  return responses.flatMap(r => r.data)
+  return queries.flatMap(r => r.data)
 }

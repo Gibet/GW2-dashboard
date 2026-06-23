@@ -22,12 +22,12 @@ import { demoAchievements } from "../utils/demo/demoAchievements";
 
 const Achievements = () => {
   const account = useAccount();
-  const [currentGroup, setCurrentGroup] = useState<AchievementGroupType | undefined>(
-    undefined,
-  );
-  const [currentCategory, setCurrentCategory] = useState<AchievementCategoryType | undefined>(
-    undefined,
-  );
+  const [currentGroup, setCurrentGroup] = useState<
+    AchievementGroupType | undefined
+  >(undefined);
+  const [currentCategory, setCurrentCategory] = useState<
+    AchievementCategoryType | undefined
+  >(undefined);
 
   const {
     data: groups,
@@ -58,7 +58,7 @@ const Achievements = () => {
     queryKey: ["AccountAchievements"],
     queryFn: () => getAccountAchievements(),
     enabled: !!account?.token,
-    demoData: demoAchievements
+    demoData: demoAchievements,
   });
 
   const sortedCategories = useMemo(() => {
@@ -70,22 +70,33 @@ const Achievements = () => {
           .map((categoryId) =>
             categories.find((category) => category.id === categoryId),
           )
-          .filter((category): category is AchievementCategoryType => Boolean(category));
-
+          .filter((category): category is AchievementCategoryType =>
+            Boolean(category),
+          );
+        acc[group.id] = acc[group.id].toSorted((a, b) => {
+          return a.order - b.order;
+        });
         return acc;
-      }, {},
+      },
+      {},
     );
   }, [groups, categories]);
 
+  const orderedGroups = useMemo(() => {
+    return groups?.sort((a, b) => {
+      return a.order - b.order;
+    });
+  }, [groups]);
+
   const sortedAccountAchievementsById = useMemo(() => {
-    if (!groups || !categories || !accountAchmnts) return {};
+    if (!orderedGroups || !categories || !accountAchmnts) return {};
 
     const categoriesById = Object.fromEntries(
       categories.map((category) => [category.id, category]),
     ) as Record<number, AchievementCategoryType>;
 
     const groupById = Object.fromEntries(
-      groups.map((group) => [group.id, group]),
+      orderedGroups.map((group) => [group.id, group]),
     ) as Record<number, AchievementGroupType>;
 
     const achievementToCategory = new Map<
@@ -96,7 +107,7 @@ const Achievements = () => {
       }
     >();
 
-    groups.forEach((group) => {
+    orderedGroups.forEach((group) => {
       group.categories.forEach((categoryId) => {
         const category = categoriesById[categoryId];
         category?.achievements.forEach((achievementId) => {
@@ -134,7 +145,7 @@ const Achievements = () => {
     });
 
     return result;
-  }, [groups, categories, accountAchmnts]);
+  }, [orderedGroups, categories, accountAchmnts]);
 
   /* function isNumberArray(a: number[] | CategoryAchievementType[]): a is number[] {
     return a.length === 0 || typeof a[0] === 'number'
@@ -145,10 +156,14 @@ const Achievements = () => {
       <div className="grid grid-cols-4 w-full">
         <div className="col-span-1 w-full flex flex-col gap-1 border-r py-4 px-3 text-sm text-left h-full overflow-auto">
           {(loadingGrps || loadingAccAchmnts) && <div>Loading...</div>}
-          {(isErrorGrps || isErrorAccAchmnts) && (<>
-            <div className="text-red-500">Error: {errorGrps?.message}</div>
-            <div className="text-red-500">Error: {errorAccAchmnts?.message}</div>
-          </>)}
+          {(isErrorGrps || isErrorAccAchmnts) && (
+            <>
+              <div className="text-red-500">Error: {errorGrps?.message}</div>
+              <div className="text-red-500">
+                Error: {errorAccAchmnts?.message}
+              </div>
+            </>
+          )}
           <Accordion>
             {groups?.map((group) => (
               <AccordionItem id={group.id} key={group.id}>
@@ -164,7 +179,7 @@ const Achievements = () => {
                   )}
                   {sortedCategories[group.id]?.map((category) => (
                     <CustomButton
-                      active={ category.name === currentCategory?.name}
+                      active={category.name === currentCategory?.name}
                       key={category.name}
                       onClick={() => setCurrentCategory(category)}
                       className="flex items-center text-xs gap-2 text-left"
@@ -183,10 +198,14 @@ const Achievements = () => {
           </Accordion>
         </div>
         <div className="col-span-3 w-full flex flex-col gap-2 px-4 overflow-auto">
-          {(currentGroup && currentCategory) && (
+          {currentGroup && currentCategory && (
             <AchievementsView
               ids={currentCategory.achievements}
-              accountAchievement={ sortedAccountAchievementsById[currentGroup.id]?.categories[currentCategory.id]?.achievements }
+              accountAchievement={
+                sortedAccountAchievementsById[currentGroup.id]?.categories[
+                  currentCategory.id
+                ]?.achievements
+              }
             />
           )}
         </div>

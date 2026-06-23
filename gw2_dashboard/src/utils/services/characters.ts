@@ -10,3 +10,8 @@ export const getCharacter = async (name: string): Promise<CharacterType> => {
   const query = await API.get<CharacterType>(`characters/${name}`)
   return query.data
 }
+
+export const getCharacterQuests = async (name: string): Promise<number[]> => {
+  const query = await API.get<number[]>(`characters/${name}/quests`)
+  return query.data
+}

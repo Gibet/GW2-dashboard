@@ -37,7 +37,7 @@ const Wallet = () => {
 
   const convertCurrencyFormat = (currency: CurrencyType, value: number) => {
     if (currency.name !== "Coin") {
-      return <span>{value.toLocaleString()}</span>;
+      return <span className="flex items-center">{value.toLocaleString()}</span>;
     }
 
     return convertGoldFormat(value);

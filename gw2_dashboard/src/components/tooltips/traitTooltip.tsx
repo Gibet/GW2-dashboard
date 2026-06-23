@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import type { TraitType } from "../../utils/types/build";
+import SkillTooltip from "./skillTooltip";
 
 type TraitTooltipProps = {
   trait: TraitType;
@@ -49,7 +50,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
         {trait.facts.map((fact) => (
           <div key={fact.text} className="flex justify-start gap-1">
             <img src={fact.icon} className="w-5 h-5" alt="" />
-            <span>{fact.description || fact.text}{fact.text && ":"}</span>
+            <span>{fact.description || fact.text}</span>
             {fact.target && <span>{fact.target}</span>}
             {fact.value && <span>{fact.value}{fact.type === "Recharge" ? "s" : ""}</span>}
             {fact.dmg_multiplier && <span>{fact.dmg_multiplier * 1000} -</span>}
@@ -60,6 +61,9 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
           </div>
         ))}
       </div>}
+      {trait.skills && trait.skills.map((skill, index) => (
+        <SkillTooltip skill={skill} x={index * 300}/>
+      ))}
     </div>
   );
 };

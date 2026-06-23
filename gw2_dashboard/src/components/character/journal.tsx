@@ -212,23 +212,29 @@ const Journal = () => {
                           </AccordionTrigger>
                           <AccordionContent>
                             <div className="py-1 pl-2">
-                              {story[1].quests.map((quest) => (
-                                <div
-                                  key={quest.name}
-                                  className="text-xs text-left flex flex-col"
-                                >
-                                  <div className="py-2 flex flex-col gap-1">
-                                    <h3 className="font-extrabold">
-                                      {quest.name}
-                                    </h3>
-                                    <div>
-                                      {quest.goals.map((goal) => (
-                                        <p key={goal.active}>{goal.complete}</p>
-                                      ))}
+                              {story[1].quests
+                                .toSorted((a, b) => {
+                                  return a.level - b.level;
+                                })
+                                .map((quest) => (
+                                  <div
+                                    key={quest.name}
+                                    className="text-xs text-left flex flex-col"
+                                  >
+                                    <div className="py-2 flex flex-col gap-1">
+                                      <h3 className="font-extrabold">
+                                        {quest.name}
+                                      </h3>
+                                      <div>
+                                        {quest.goals.map((goal) => (
+                                          <p key={goal.active}>
+                                            {goal.complete}
+                                          </p>
+                                        ))}
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              ))}
+                                ))}
                             </div>
                           </AccordionContent>
                         </AccordionItem>

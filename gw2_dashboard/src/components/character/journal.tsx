@@ -159,7 +159,7 @@ const Journal = () => {
               <div className="text-red-500">Error: {errorAnswers?.message}</div>
             )}
             {answers && (
-              <div className="flex flex-col gap-2 text-left py-3">
+              <div className="flex flex-col text-left py-3 Cagliostro">
                 {answers.map((answer) => (
                   <Backstory key={answer.title} answer={answer} />
                 ))}
@@ -219,15 +219,15 @@ const Journal = () => {
                                 .map((quest) => (
                                   <div
                                     key={quest.name}
-                                    className="text-xs text-left flex flex-col"
+                                    className="text-sm text-left flex flex-col"
                                   >
                                     <div className="py-2 flex flex-col gap-1">
-                                      <h3 className="font-extrabold">
+                                      <h2 className="font-extrabold PT_Serif">
                                         {quest.name}
-                                      </h3>
+                                      </h2>
                                       <div>
                                         {quest.goals.map((goal) => (
-                                          <p key={goal.active}>
+                                          <p className="Cagliostro" key={goal.active}>
                                             {goal.complete}
                                           </p>
                                         ))}

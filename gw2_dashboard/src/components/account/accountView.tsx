@@ -5,7 +5,7 @@ import { SecToHours } from "../../utils/functions";
 
 const AccountView: React.FC<AccountType> = (props: AccountType) => {
   return (
-    <div className="grid grid-cols-4 gap-3 text-left justify-between mb-3 text-xs">
+    <div className="grid grid-cols-4 gap-3 text-left justify-between mb-3 text-xs Lato">
       <div className="flex flex-col col-span-3">
         <span>Account name: {props.name}</span>
         <span>Played: {SecToHours(props.age)}</span>

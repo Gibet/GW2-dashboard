@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const { pathname } = useLocation()
 
   return (
-    <header className="flex items-center w-full">
+    <header className="flex items-center w-full Cagliostro">
       <nav className="flex justify-between items-center px-4 w-full h-full text-sm">
         <div className="flex">
           <button onClick={theme.toggleTheme} aria-label="Toggle theme">
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
             }
           </button>
         </div>
-        {account?.isDemo && <span>Using Demo Account</span>}
+        {account?.isDemo && <span className="Lato">Using Demo Account</span>}
         <div className="flex gap-2">
           <Link data-active={pathname === "/"} to={"/"} className="flex gap-1">
             <span className="sprite-home"></span>

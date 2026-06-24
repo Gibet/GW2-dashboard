@@ -82,12 +82,12 @@ const Home = () => {
         {account?.data && account?.permissions && (
           <div className="flex flex-col gap-3 items-center">
             <div className="h-full flex items-center">
-              <div className="items-center justify-center">
+              <div className="items-center justify-center Cagliostro">
                 Welcome {account.data.name}
               </div>
             </div>
-            <span className="text-sm">API Permissions: </span>
-            <div className="flex text-xs flex-wrap gap-2">
+            <span className="text-sm Lato">API Permissions: </span>
+            <div className="flex text-xs flex-wrap gap-2 Lato">
               {account?.permissions?.map((permission, index) => (
                 <>
                   <span key={permission}>{permission}</span>

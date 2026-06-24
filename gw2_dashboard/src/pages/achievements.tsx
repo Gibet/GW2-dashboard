@@ -154,7 +154,7 @@ const Achievements = () => {
   return (
     <div className="page_content h-full">
       <div className="grid grid-cols-4 w-full">
-        <div className="col-span-1 w-full flex flex-col gap-1 border-r py-4 px-3 text-sm text-left h-full overflow-auto">
+        <div className="col-span-1 w-full flex flex-col gap-1 border-r py-4 px-3 text-sm text-left h-full overflow-auto Lato">
           {(loadingGrps || loadingAccAchmnts) && <div>Loading...</div>}
           {(isErrorGrps || isErrorAccAchmnts) && (
             <>

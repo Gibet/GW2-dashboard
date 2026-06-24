@@ -17,7 +17,7 @@ const Backstory: React.FC<BackstoryProps> = ({ answer }) => {
       onMouseMove={(e) => tooltip.handleMouseMove(e)}
       onMouseLeave={tooltip.handleMouseExit}
       key={answer.id}
-      className="w-full pl-2"
+      className="w-full pl-2 cursor-default text-sm"
     >
       <span
         dangerouslySetInnerHTML={{

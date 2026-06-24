@@ -6,10 +6,11 @@ import useTooltip from "../../hooks/useTooltip";
 type TraitProps = {
   trait: TraitType | undefined;
   type: string | undefined;
+  active?: boolean
 };
 
 //this component is used to display a trait
-const Trait: React.FC<TraitProps> = ({ trait, type }) => {
+const Trait: React.FC<TraitProps> = ({ trait, type, active = true }) => {
   const tooltip = useTooltip()
 
   return (
@@ -19,6 +20,7 @@ const Trait: React.FC<TraitProps> = ({ trait, type }) => {
         onMouseEnter={(e) => tooltip.handleMouseEnter(e)}
         onMouseMove={(e) => tooltip.handleMouseMove(e)}
         onMouseLeave={tooltip.handleMouseExit}
+        data-traiton={active}
       >
         <img className="w-full h-full" src={trait?.icon} alt="" />
       </div>

@@ -36,7 +36,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
 
   return (
     <div className="flex flex-col h-full overflow-hidden text-sm">
-      <div className="flex overflow-y-auto gap-3 p-4">
+      <div className="flex overflow-y-auto gap-3 p-4 Cagliostro">
         {characterTabs.map((tabName) => (
           <CustomButton
             className="flex justify-center items-end gap-1"
@@ -55,7 +55,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
       {isLoading && <div className="p-4">Loading Character...</div>}
       {isError && <div className="p-4 text-red-500">Error: {error?.message}</div>}
       {character?.data && !isLoading && (
-        <div className="flex flex-col items-center p-4 h-full overflow-auto">
+        <div className="flex flex-col items-center p-4 h-full overflow-auto Lato">
           {tab === "Main" && (
             <div
               className={`w-full flex flex-col col-span-4 text-sm text-left h-full ${character.data.race}`}

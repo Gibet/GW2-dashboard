@@ -64,7 +64,7 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
               )}
               {item.details.min_power && (
                 <span className="text-nowrap">
-                  {item.details.min_power}-{item.details.max_power} damage
+                  {item.details.min_power}-{item.details.max_power} {item.details.damage_type} damage
                 </span>
               )}
             </div>
@@ -81,8 +81,9 @@ const ItemTooltip: React.FC<ItemProps> = ({ item, slot, x = 0, y = 0 }) => {
       )}
 
       <div className="tooltip_description text-left">
-        <span className="text-nowrap">{item.type} -&nbsp;</span>
-        <span className="" dangerouslySetInnerHTML={{ __html: item.description }} />
+        <span>{item.details?.type}&nbsp;</span>
+        <span className="text-nowrap">{item.type} {item.description ? <>-&nbsp;</> : ''}</span>
+        <span className="" dangerouslySetInnerHTML={{ __html: item.details?.description || item.description  }} />
       </div>
       <br />
 

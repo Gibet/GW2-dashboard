@@ -5,7 +5,6 @@ import { getSkills, getSpecializations, getTraits } from "../../utils/services/b
 import SkillBar from "./skillBar";
 import TraitLine from "./traitLine";
 import CustomButton from "../generic/button";
-import type { SpecializationType } from "../../utils/types/build";
 
 type Tab = keyof CharacterSpecializationsType & keyof CharacterSkillsType;
 type BuildProps = {

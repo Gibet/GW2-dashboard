@@ -15,7 +15,7 @@ const Item: React.FC<ItemProps> = ({ item, slot }) => {
 
   return (
     <div
-      className="item"
+      className="item PT_Serif"
       onMouseEnter={(e) => tooltip.handleMouseEnter(e)}
       onMouseMove={(e) => tooltip.handleMouseMove(e)}
       onMouseLeave={tooltip.handleMouseExit}

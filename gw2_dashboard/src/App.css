@@ -81,15 +81,36 @@ button {cursor: pointer;}
 .Junk {border:1px solid var(--Junk);}
 
 @font-face {
-  font-family: 'PT Serif';
-  src: url('/fonts/PT_Serif/PTSerif-Regular.ttf') format('truetype');
+  font-family: 'PT_Serif';
+  src: url('/fonts/PT_Serif/Cagliostro-Regular.ttf') format('truetype');
   font-weight: 100 900;
   font-weight: 400;
   font-style: swap;
 }
+@font-face {
+  font-family: 'Cagliostro';
+  src: url('/fonts/Cagliostro/Cagliostro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style:normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-weight: 400;
+  font-style:normal;
+}
 
 .PT_Serif {
-  font-family: 'PT Serif', monospace;
+  font-family: 'PT_Serif', serif;
+  font-weight: 400;
+}
+.Cagliostro {
+  font-family: 'Cagliostro', serif;
+  font-weight: 400;
+}
+.Lato {
+  font-family: 'Lato', serif;
   font-weight: 400;
 }
 
@@ -107,6 +128,7 @@ button {cursor: pointer;}
     height: 20px;
     width: 20px;
     background-size: contain;
+    background-image: url("/images/Icons/Laurel.png");
 }
 
 .sprite-Sylvari {background-image: url("/images/Races/Icons/Sylvari.png");}
@@ -115,7 +137,6 @@ button {cursor: pointer;}
 .sprite-Norn {background-image: url("/images/Races/Icons/Norn.png");}
 .sprite-Charr {background-image: url("/images/Races/Icons/Charr.png");}
 .sprite-home {background-image: url("/images/Icons/Homestead.png");}
-.sprite-account {background-image: url("/images/Icons/Laurel.png");}
 .main-logo {
     background-image: url("/images/HomeLogo.png");
     background-size: contain;
@@ -132,7 +153,7 @@ body {
   scrollbar-color: var(--dividerColor) transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'PT Serif', monospace ;
+  font-family: 'PT_Serif', serif;
 }
 
 #root {
@@ -258,11 +279,15 @@ input:disabled {
     flex-direction: column;
 }
 
+.major[data-traiton=true] {
+  filter: opacity(1) drop-shadow(0px 0px 4px rgb(255, 255, 255, 1)) !important;
+}
+.minor[data-traiton=true] {filter: opacity(1) drop-shadow(0px 0px 4px rgba(0, 0, 0, 1))}
 .trait, .weapon_trait{
   margin: 1%;
   height: 35px;
   width: 32px;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 1));
+  filter: opacity(.6) drop-shadow(0px 0px 4px rgba(0, 0, 0, 1));
 }
 
 .trait img {
@@ -327,7 +352,7 @@ input:disabled {
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
     background-repeat: repeat;
-    font-family: Arial, sans-serif;
+    font-family: "Lato", sans-serif;
     position: fixed;
     display: flex;
     z-index: 9;
@@ -406,18 +431,13 @@ input:disabled {
 progress::-webkit-progress-bar {background: transparent;}
 progress::-webkit-progress-value {background: var(--progress);}
 
-br {
-    display: none;
-}
+
 
 /* sprites */
 .sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build, .sprite-Power, .sprite-Toughness, .sprite-Vitality, .sprite-Precision, .sprite-Ferocity, .sprite-ConditionDamage, .sprite-ConditionDuration, .sprite-AgonyResistance, .sprite-Concentration, .sprite-Expertise, .sprite-Armor, .sprite-Health, .sprite-CritChance, .sprite-CritDamage, .sprite-HealingPower, .sprite-BoonDuration,
 .sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
     background-image: url(/images/sprites.png);
     background-repeat: no-repeat;
-    display: inline-block;
-    position: relative;
-    top: 3px;
 }
 
 .sprite-characters {

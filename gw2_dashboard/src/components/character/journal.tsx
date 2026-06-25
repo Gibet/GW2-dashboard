@@ -83,15 +83,21 @@ const Journal = () => {
     queryFn: getSeasons,
   });
 
+  const orderedSeasons = useMemo(() => {
+    return seasons?.sort((a, b) => {
+      return a.order - b.order;
+    });
+  }, [seasons]);
+
   const sortedQuestByStoryandSeason = useMemo(() => {
-    if (!quests || !stories || !seasons) return {};
+    if (!quests || !stories || !orderedSeasons) return {};
 
     const storiesById = Object.fromEntries(
       stories.map((story) => [story.id, story]),
     ) as Record<number, StoryType>;
 
     const seasonById = Object.fromEntries(
-      seasons.map((season) => [season.id, season]),
+      orderedSeasons.map((season) => [season.id, season]),
     ) as Record<string, SeasonType>;
 
     const questTostory = new Map<
@@ -102,7 +108,7 @@ const Journal = () => {
       }
     >();
 
-    seasons.forEach((season) => {
+    orderedSeasons.forEach((season) => {
       season.stories.forEach((storyId) => {
         const story = storiesById[storyId];
         story.quests = quests.filter((quest) => quest.story === story.id);
@@ -139,9 +145,8 @@ const Journal = () => {
       result[mapping.seasonId].stories[mapping.storyId].quests.push(quest);
     });
 
-    console.log(result);
     return result;
-  }, [seasons, stories, quests]);
+  }, [orderedSeasons, stories, quests]);
 
   return (
     <div className="w-full">
@@ -154,9 +159,9 @@ const Journal = () => {
               <div className="text-red-500">Error: {errorAnswers?.message}</div>
             )}
             {answers && (
-              <div className="flex flex-col gap-2 text-left py-3">
+              <div className="flex flex-col text-left py-3 Cagliostro">
                 {answers.map((answer) => (
-                  <Backstory answer={answer} />
+                  <Backstory key={answer.title} answer={answer} />
                 ))}
               </div>
             )}
@@ -185,7 +190,7 @@ const Journal = () => {
             return a[1].season.order - b[1].season.order;
           })
           .map((season, index) => (
-            <AccordionItem id={index + 1}>
+            <AccordionItem key={season[1].season.id} id={index + 1}>
               <AccordionTrigger>{season[1].season.name}</AccordionTrigger>
               <AccordionContent>
                 <div className="py-1 pl-2">
@@ -195,7 +200,10 @@ const Journal = () => {
                         return a[1].story.order - b[1].story.order;
                       })
                       .map((story) => (
-                        <AccordionItem id={story[1].story.id}>
+                        <AccordionItem
+                          key={story[1].story.name}
+                          id={story[1].story.id}
+                        >
                           <AccordionTrigger>
                             <div className="flex justify-between w-full pr-2">
                               <span>{story[1].story.name}</span>
@@ -205,18 +213,23 @@ const Journal = () => {
                           <AccordionContent>
                             <div className="py-1 pl-2">
                               {story[1].quests
-                                .sort((a, b) => {
+                                .toSorted((a, b) => {
                                   return a.level - b.level;
                                 })
                                 .map((quest) => (
-                                  <div className="text-xs text-left flex flex-col">
+                                  <div
+                                    key={quest.name}
+                                    className="text-sm text-left flex flex-col"
+                                  >
                                     <div className="py-2 flex flex-col gap-1">
-                                      <h3 className="font-extrabold">
+                                      <h2 className="font-extrabold PT_Serif">
                                         {quest.name}
-                                      </h3>
+                                      </h2>
                                       <div>
                                         {quest.goals.map((goal) => (
-                                          <p>{goal.complete}</p>
+                                          <p className="Cagliostro" key={goal.active}>
+                                            {goal.complete}
+                                          </p>
                                         ))}
                                       </div>
                                     </div>

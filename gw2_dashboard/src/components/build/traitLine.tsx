@@ -3,6 +3,7 @@ import type { SpecializationType, TraitType } from "../../utils/types/build";
 import { useMemo } from "react";
 import Trait from "./trait";
 import { chunk } from "../../utils/functions";
+import type { CharacterSpecializationType } from "../../utils/types/character";
 
 type TraitLineProps = {
   specialization: SpecializationType;
@@ -11,9 +12,10 @@ type TraitLineProps = {
     majorTraits: (TraitType | undefined)[];
     weaponTrait: TraitType | undefined;
   };
+  charaSpec?: CharacterSpecializationType
 };
 
-const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
+const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits, charaSpec }) => {
   const major_traits = useMemo(() => {
     const validMajorTraits = traits.majorTraits.filter(Boolean);
     return chunk(validMajorTraits, 3);
@@ -41,9 +43,9 @@ const TraitLine: React.FC<TraitLineProps> = ({ specialization, traits }) => {
             <Trait trait={minor} type="minor" />
           </div>
           <div className="trait_tier col-span-1 gap-1">
-            {major_traits[index]?.map((major) => (
-              <Trait key={major?.name} trait={major} type="major" />
-            ))}
+            {major_traits[index]?.map((major) => (<>
+              {major && <Trait active={charaSpec?.traits?.includes(major.id)} key={major?.name} trait={major} type="major" />}
+            </>))}
           </div>
         </>
       ))}

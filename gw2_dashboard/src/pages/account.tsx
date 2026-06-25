@@ -19,7 +19,7 @@ const Account = () => {
         <div>
           {account?.data && <AccountView {...account.data} />}
         </div>
-        <div className='flex gap-2 text-sm justify-start mb-3'>
+        <div className='flex gap-2 text-sm justify-start mb-3 Cagliostro'>
           {tabs.map((tab) => (
             <CustomButton
               key={tab}

@@ -3,7 +3,7 @@ import { memo } from "react";
 
 const Footer = () => {
   return (
-    <footer className="textured-main backdrop-blur-xs w-full 2xl:max-w-[75vw] grid grid-cols-2 justify-center border-t items-start text-center pt-6">
+    <footer className="textured-main backdrop-blur-xs w-full 2xl:max-w-[75vw] grid grid-cols-2 justify-center border-t items-start text-center pt-6 Lato">
       <div className="col-span-1 flex flex-col justify-self-center w-full px-4 items-start gap-2">
         <ul className="text-left w-full text-xs grid grid-cols-2 md:grid-cols-3 gap-3 text-nowrap">
           <li className="col-span-1">

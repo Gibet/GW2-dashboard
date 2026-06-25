@@ -7,7 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const CustomButton: React.FC<ButtonProps> = ({ children, active = false, ...props }) => {
   return (
-    <button data-active={active} {...props} >
+    <button className="" data-active={active} {...props} >
       {children}
     </button>
   )

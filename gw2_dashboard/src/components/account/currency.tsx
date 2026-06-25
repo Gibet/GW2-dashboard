@@ -18,7 +18,7 @@ const Currency: React.FC<CurrencyProps> = ({ currency, amount }) => {
       onMouseMove={(e) => tooltip.handleMouseMove(e)}
       onMouseLeave={tooltip.handleMouseExit}
       key={currency.id}
-      className="w-full flex justify-between items-center p-1"
+      className="w-full flex justify-between items-center p-1 cursor-default"
     >
       <span>{currency.name}</span>
       <div className="flex gap-3">

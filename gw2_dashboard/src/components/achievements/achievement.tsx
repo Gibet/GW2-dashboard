@@ -37,7 +37,7 @@ const Achievement: React.FC<AchievementProps> = ({
             <div key={`${achievement.name}-tier-${index}`} className="grid grid-cols-12 gap-3 items-center">
               <span className="col-span-1">{status?.current && tier.count <= status?.current && <Check size={16} color="green"/>} </span>
               <span className="col-span-2">Tier {index+1}</span>
-              <span className="col-span-1 flex justify-end item-start">{tier.points} <span className="sprite-achievement-icon"></span></span>
+              <span className="col-span-1 flex justify-end items-center gap-1"><span>{tier.points}</span> <span className="sprite-achievement-icon"></span></span>
               <span className="col-span-8">{`${tier.count} Objective${(tier.count > 1) ? 's' : ''} Completed`}</span>
             </div>
           ))}

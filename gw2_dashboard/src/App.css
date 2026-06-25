@@ -438,9 +438,6 @@ progress::-webkit-progress-value {background: var(--progress);}
 .sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
     background-image: url(/images/sprites.png);
     background-repeat: no-repeat;
-    display: inline-block;
-    position: relative;
-    top: 3px;
 }
 
 .sprite-characters {

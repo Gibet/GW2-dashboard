@@ -51,7 +51,16 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
         <div className="flex flex-col items-start gap-1">
           {skill.facts.map((fact) => (
             <div key={fact.text} className="flex justify-start gap-1 facts">
-              <img src={fact.icon} className="w-5 h-5" alt="" />
+              <span className="min-h-5 min-w-5">
+                <div className="relative max-w-5 max-h-5">
+                  <img src={fact.icon} className="w-5 h-5" alt="" />
+                  {(fact.apply_count && fact.apply_count > 1) && (
+                    <span className="absolute -bottom-1 text-white text-shadow-black right-0">
+                      {fact.apply_count}
+                    </span>
+                  )}
+                </div>
+              </span>
               <span>{fact.description || fact.text}</span>
               {fact.target && <span>{fact.target}</span>}
               {fact.value && (
@@ -68,7 +77,7 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
                   {fact.hit_count} hit{fact.hit_count > 1 ? "s" : ""}
                 </span>
               )}
-              {fact.duration && <span>{fact.duration}s</span>}
+              {!!fact.duration && <span>{fact.duration}s</span>}
               {fact.distance && <span>{fact.distance}</span>}
               {fact.percent && <span>{fact.percent}%</span>}
               {fact.field_type && <span>{fact.field_type}</span>}

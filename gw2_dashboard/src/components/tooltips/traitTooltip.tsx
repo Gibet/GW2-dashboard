@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import type { TraitType } from "../../utils/types/build";
 import SkillTooltip from "./skillTooltip";
+import { primaryAttributes } from "../../utils/variables";
 
 type TraitTooltipProps = {
   trait: TraitType;
@@ -40,10 +41,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
     >
       <div className="tooltip_header flex gap-2">
         <div className={`trait ${trait.slot.toLowerCase()}`}>
-          <img
-            src={trait.icon}
-            alt=""
-          />
+          <img src={trait.icon} alt="" />
         </div>
         <div>{trait.name}</div>
       </div>
@@ -54,10 +52,19 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
       {trait.facts && (
         <div className="flex flex-col items-start gap-1">
           {trait.facts.map((fact) => (
-            <div key={fact.text} className="flex justify-start gap-1 facts">
-              <img src={fact.icon} className="w-5 h-5" alt="" />
-              <span>{fact.description || fact.text}</span>
-              {fact.target && <span>{fact.target}</span>}
+            <div key={fact.text} className="flex gap-1 facts">
+              <span className="min-h-5 min-w-5">
+                <span className="relative max-w-5 max-h-5">
+                  <img src={fact.icon} className="w-5 h-5" alt="" />
+                  {(fact.apply_count && fact.apply_count > 1) && (
+                    <span className="absolute -bottom-1 text-white right-0">
+                      {fact.apply_count}
+                    </span>
+                  )}
+                </span>
+              </span>
+              {(fact.description || fact.text) && <span>{fact.description || fact.text}</span>}
+              {fact.target && <span>{primaryAttributes[fact.target] || fact.target}</span>}
               {fact.value && (
                 <span>
                   {fact.value}
@@ -72,7 +79,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
                   {fact.hit_count} hit{fact.hit_count > 1 ? "s" : ""}
                 </span>
               )}
-              {fact.duration && <span>{fact.duration}s</span>}
+              {!!fact.duration && <span>{fact.duration}s</span>}
               {fact.percent && <span>{fact.percent}%</span>}
               {fact.field_type && <span>{fact.field_type}</span>}
             </div>

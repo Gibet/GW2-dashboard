@@ -57,6 +57,7 @@ export interface FactType {
    value?: number
    dmg_multiplier?: number
    hit_count?: number
+   apply_count?: number
    duration?: number
    percent?: number
    field_type?: string

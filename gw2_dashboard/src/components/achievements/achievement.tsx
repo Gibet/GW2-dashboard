@@ -22,7 +22,7 @@ const Achievement: React.FC<AchievementProps> = ({
         <h3>{achievement.name}</h3>
       </div>
       <div className="achievement-body flex flex-col text-xs text-left gap-3 Lato">
-        <p className="text-sm">{achievement.requirement}</p>
+        <span className="text-sm" dangerouslySetInnerHTML={{__html: achievement.requirement}}/>
         <p className="Cagliostro">{achievement.description && <span dangerouslySetInnerHTML={{__html: achievement.description}}/>}</p>
         {achievement.bits && <div className="w-full">
           {achievement.bits.map((bit, index) => (

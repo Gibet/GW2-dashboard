@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import type { SkillType } from "../../utils/types/build";
+import { primaryAttributes } from "../../utils/variables";
 
 type SkillTooltipProps = {
   skill: SkillType;
@@ -62,7 +63,7 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
                 </div>
               </span>
               <span>{fact.description || fact.text}</span>
-              {fact.target && <span>{fact.target}</span>}
+              {(fact.target && !(fact.description || fact.text)) && <span>{primaryAttributes[fact.target] || fact.target}</span>}
               {fact.value && (
                 <span>
                   {fact.value}

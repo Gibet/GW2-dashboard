@@ -64,7 +64,7 @@ const TraitTooltip: React.FC<TraitTooltipProps> = ({ trait, x = 0, y = 0 }) => {
                 </span>
               </span>
               {(fact.description || fact.text) && <span>{fact.description || fact.text}</span>}
-              {fact.target && <span>{primaryAttributes[fact.target] || fact.target}</span>}
+              {(fact.target && !(fact.description || fact.text)) && <span>{primaryAttributes[fact.target] || fact.target}</span>}
               {fact.value && (
                 <span>
                   {fact.value}

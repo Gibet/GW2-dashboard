@@ -159,8 +159,8 @@ const Journal = () => {
               <div className="text-red-500">Error: {errorAnswers?.message}</div>
             )}
             {answers && (
-              <div className="flex flex-col text-left pl-2 py-3 Cagliostro">
-                <span>My name is {character?.data?.name}.</span>
+              <div className="flex flex-col text-left py-3 Cagliostro">
+                <span className="pl-2">My name is {character?.data?.name}.</span>
                 {answers.map((answer) => (
                   <Backstory key={answer.title} answer={answer} />
                 ))}

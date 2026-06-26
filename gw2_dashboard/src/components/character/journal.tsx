@@ -160,6 +160,7 @@ const Journal = () => {
             )}
             {answers && (
               <div className="flex flex-col text-left py-3 Cagliostro">
+                <span>My name is {character?.data?.name}.</span>
                 {answers.map((answer) => (
                   <Backstory key={answer.title} answer={answer} />
                 ))}

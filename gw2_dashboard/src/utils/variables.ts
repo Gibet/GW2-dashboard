@@ -7,6 +7,7 @@ export const primaryAttributes: Record<string, string> = {
   Vitality: "Vitality",
   CritDamage: "Ferocity",
   HealingPower: "Healing Power",
+  Healing: "Healing Power",
   ConditionDamage: "Condition Damage",
   ConditionDuration: "Expertise",
   Concentration: "Concentration",

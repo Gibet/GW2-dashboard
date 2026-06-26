@@ -37,30 +37,45 @@ const SkillTooltip: React.FC<SkillTooltipProps> = ({ skill, x = 0, y = 0 }) => {
         pointerEvents: "none",
       }}
     >
-      <div className="tooltip_header">
-        <img src={skill.icon} className="skill" alt="" />
+      <div className="tooltip_header flex gap-2">
+        <div className="skill w-8 h-8">
+          <img src={skill.icon} className="skill" alt="" />
+        </div>
         <div>{skill.name}</div>
       </div>
       <div
         className="tooltip_description text-left"
         dangerouslySetInnerHTML={{ __html: skill.description }}
       />
-      {skill.facts && <div className="flex flex-col items-start gap-1">
-        {skill.facts.map((fact) => (
-          <div key={fact.text} className="flex justify-start gap-1">
-            <img src={fact.icon} className="w-5 h-5" alt="" />
-            <span>{fact.description || fact.text}</span>
-            {fact.target && <span>{fact.target}</span>}
-            {fact.value && <span>{fact.value}{fact.type === "Recharge" ? "s" : ""}</span>}
-            {fact.dmg_multiplier && <span>{fact.dmg_multiplier * 1000} -</span>}
-            {fact.hit_count && <span>{fact.hit_count} hit{fact.hit_count > 1 ? "s" : ""}</span>}
-            {fact.duration && <span>{fact.duration}s</span>}
-            {fact.distance && <span>{fact.distance}</span>}
-            {fact.percent && <span>{fact.percent}%</span>}
-            {fact.field_type && <span>{fact.field_type}</span>}
-          </div>
-        ))}
-      </div>}
+      {skill.facts && (
+        <div className="flex flex-col items-start gap-1">
+          {skill.facts.map((fact) => (
+            <div key={fact.text} className="flex justify-start gap-1 facts">
+              <img src={fact.icon} className="w-5 h-5" alt="" />
+              <span>{fact.description || fact.text}</span>
+              {fact.target && <span>{fact.target}</span>}
+              {fact.value && (
+                <span>
+                  {fact.value}
+                  {fact.type === "Recharge" ? "s" : ""}
+                </span>
+              )}
+              {fact.dmg_multiplier && (
+                <span>{fact.dmg_multiplier * 1000} -</span>
+              )}
+              {fact.hit_count && (
+                <span>
+                  {fact.hit_count} hit{fact.hit_count > 1 ? "s" : ""}
+                </span>
+              )}
+              {fact.duration && <span>{fact.duration}s</span>}
+              {fact.distance && <span>{fact.distance}</span>}
+              {fact.percent && <span>{fact.percent}%</span>}
+              {fact.field_type && <span>{fact.field_type}</span>}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

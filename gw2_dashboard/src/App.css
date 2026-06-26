@@ -80,6 +80,17 @@ button {cursor: pointer;}
 .Basic {border:1px solid var(--Basic);}
 .Junk {border:1px solid var(--Junk);}
 
+.text-Legendary {color: var(--Legendary);}
+.text-Ascended {color: var(--Ascended);}
+.text-Exotic {color: var(--Exotic);}
+.text-Rare {color: var(--Rare);}
+.text-Masterwork {color: var(--Masterwork);}
+.text-Fine, c- {color: var(--Fine);}
+.text-Basic {color: var(--Basic);}
+.text-Junk {color: var(--Junk);}
+.facts {color: rgb(170, 170, 170)}
+.item_stats, .stats {color: rgb(47, 255, 47)}
+
 @font-face {
   font-family: 'PT_Serif';
   src: url('/fonts/PT_Serif/Cagliostro-Regular.ttf') format('truetype');
@@ -282,7 +293,7 @@ input:disabled {
 .major[data-traiton=true] {
   filter: opacity(1) drop-shadow(0px 0px 4px rgb(255, 255, 255, 1)) !important;
 }
-.minor[data-traiton=true] {filter: opacity(1) drop-shadow(0px 0px 4px rgba(0, 0, 0, 1))}
+.minor[data-traiton=true], .tooltip_header .trait {filter: opacity(1) drop-shadow(0px 0px 4px rgba(0, 0, 0, 1))}
 .trait, .weapon_trait{
   margin: 1%;
   height: 35px;
@@ -362,9 +373,9 @@ input:disabled {
     padding: .5rem;
     max-width: 300px;
     color: white;
-    border: 2px solid #ffffffc4;
-    img {
-        margin-right: 1rem;
+    border: 1px solid #ffffffc4;
+    c\=\@flavor {
+        color: lightblue
     }
 }
 
@@ -372,6 +383,7 @@ input:disabled {
     display: flex;
     align-items: center;
     border-bottom: lightgrey;
+    color: peachpuff
 }
 
 .tooltip_stats {
@@ -434,10 +446,11 @@ progress::-webkit-progress-value {background: var(--progress);}
 
 
 /* sprites */
-.sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build, .sprite-Power, .sprite-Toughness, .sprite-Vitality, .sprite-Precision, .sprite-Ferocity, .sprite-ConditionDamage, .sprite-ConditionDuration, .sprite-AgonyResistance, .sprite-Concentration, .sprite-Expertise, .sprite-Armor, .sprite-Health, .sprite-CritChance, .sprite-CritDamage, .sprite-HealingPower, .sprite-BoonDuration,
+.sprite-characters, .sprite-crafting, .sprite-equipment, .sprite-inventory, .sprite-map-completion, .sprite-journal, .sprite-build, .sprite-Power, .sprite-Toughness, .sprite-Vitality, .sprite-Precision, .sprite-Ferocity, .sprite-ConditionDamage, .sprite-ConditionDuration, .sprite-AgonyResistance, .sprite-Concentration, .sprite-Expertise, .sprite-Armor, .sprite-Health, .sprite-CritChance, .sprite-CritDamage, .sprite-HealingPower, .sprite-BoonDuration, .sprite-Artificer, .sprite-Armorsmith, .sprite-Huntsman, .sprite-Weaponsmith, .sprite-Jeweler, .sprite-Tailor, .sprite-Leatherworker,
 .sprite-bank, .sprite-wallet, .sprite-copper, .sprite-silver, .sprite-gold, .sprite-achievements, .sprite-achievement-big, .sprite-achievement-icon {
     background-image: url(/images/sprites.png);
     background-repeat: no-repeat;
+    display: inline-block
 }
 
 .sprite-characters {
@@ -624,4 +637,52 @@ progress::-webkit-progress-value {background: var(--progress);}
     background-position: 0 -156px;
     height: 32px;
     width: 32px;
+}
+
+.sprite-Artificer {
+    background-position: -544px -90px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Huntsman {
+    background-position: -544px -126px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Chef {
+    background-position: -544px -108px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Leatherworker {
+    background-position: -544px -162px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Jeweler {
+    background-position: -544px -144px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Tailor {
+    background-position: -544px -198px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Armorsmith {
+    background-position: -544px -72px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-Weaponsmith {
+    background-position: -544px -216px;
+    height: 16px;
+    width: 16px;
 }

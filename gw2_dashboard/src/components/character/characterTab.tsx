@@ -58,7 +58,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
         <div className="flex flex-col items-center p-4 h-full overflow-auto Lato">
           {tab === "Main" && (
             <div
-              className={`w-full flex flex-col col-span-4 text-sm text-left h-full ${character.data.race}`}
+              className={`w-full flex flex-col gap-0.5 col-span-4 text-sm text-left h-full ${character.data.race}`}
             >
               <span>Name: {character.data.name}</span>
               <span>
@@ -71,9 +71,9 @@ const CharacterTab: React.FC<CharacterTabProps> = ({ name }) => {
               <ul>
                 Crafting:{" "}
                 {character?.data.crafting.map((training) => (
-                  <li key={training.discipline} className="px-4">
+                  <li key={training.discipline} className="px-4 flex items-center gap-1">
                     <span className={`sprite-${training.discipline}`}></span>
-                    {training.discipline} - {training.rating}
+                    {training.discipline}: {training.rating}
                   </li>
                 ))}
               </ul>
